@@ -45,13 +45,24 @@
                 .account-bar > a {
                     padding: 5px 22.5% 5px 22.5%;
                 }
-                .top-bar > h3, .search-con {
+                .top-bar > h3, .search-con, .basket{
                     display: inline-block;
+                }
+                .basket {
+                    position: fixed;
+                    width: 5vw;
+                    height: 50px;
+                    right: 20px;
+                    top: 1px;
+                    border-bottom: 1px solid grey;
+                    text-align: center;
+                    padding-top: 4px;
                 }
                 .search-con {
                     position: fixed;
-                    right: 10px;
+                    right: 8vw;
                     top: 12px;
+                    border-bottom: 1px solid grey;
                 }
                 .main-content {
                     position: relative;
@@ -63,12 +74,13 @@
                     outline: none;
                     border: none;
                     padding: 14px;
-                    width: 65vw;
+                    width: 50vw;
                 }
                 .search-button {
                     border: none;
                     padding: 14px;
-                    width: 5vw;
+                    width: 75px;
+                    background-color: white;
                 }
                 .logo {
                     font-style: italic;
@@ -91,6 +103,9 @@
                     <input class="search-bar" type="text" name="search" placeholder="Search for a product">
                     <input class="search-button" type="submit">
                 </form>
+            </div>
+            <div class="basket">
+                <a href="">Basket <br> £000.00</a>
             </div>
         </div>
         <div class="account-bar">
