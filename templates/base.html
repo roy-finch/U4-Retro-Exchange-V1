@@ -4,6 +4,8 @@
 <html lang="en">
     <head>
 
+        <link rel="shortcut icon" href="media/r_e_logo.png">
+
         {% block meta %}
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +15,11 @@
         {% block corecss %}
             <style>
                 html {
+                    height: 100%;
+                }
+                body {
+                    /* background: url('/media/background.png') no-repeat center center fixed;
+                    background-size: cover; */
                     font-family: "Segoe UI", "sans Serif";
                     overflow-x: hidden;
                 }
@@ -29,6 +36,7 @@
                     width: 100%;
                     padding-left: 20px;
                     z-index: 2;
+                    background-color: white;
                 }
                 .account-bar {
                     position: fixed;
@@ -41,6 +49,7 @@
                     padding: 5px;
                     z-index: 2;
                     text-align: center;
+                    background-color: white;
                 }
                 .account-bar > a {
                     padding: 5px 22.5% 5px 22.5%;
@@ -53,10 +62,10 @@
                     width: 5vw;
                     height: 50px;
                     right: 20px;
-                    top: 1px;
+                    top: -3px;
                     border-bottom: 1px solid grey;
                     text-align: center;
-                    padding-top: 4px;
+                    padding-top: 8px;
                 }
                 .search-con {
                     position: fixed;
@@ -65,10 +74,14 @@
                     border-bottom: 1px solid grey;
                 }
                 .main-content {
+                    background-color: white;
                     position: relative;
-                    left: -10px;
-                    width: 93vw;
-                    padding: 90px 90px 30px 90px;
+                    left: 50px;
+                    width: 85vw;
+                    height: 200vw;
+                    top: 130px;
+                    padding: 30px 60px 30px 60px;
+                    border: 1px solid black;
                 }
                 .search-bar, .search-bar:focus {
                     outline: none;
@@ -77,15 +90,25 @@
                     width: 50vw;
                 }
                 .search-button {
+                    outline: none;
                     border: none;
-                    padding: 14px;
+                    padding: 2px;
                     width: 75px;
                     background-color: white;
+                    text-align: center;
                 }
                 .logo {
                     font-style: italic;
                     letter-spacing: -2px;
                     font-size: 20px;
+                }
+                .logo-img {
+                    height: 1rem;
+                    width: 3rem;
+                }
+                .icon {
+                    height: 1.25rem;
+                    width: 2rem;
                 }
             </style>
         {% endblock %}
@@ -97,15 +120,26 @@
     </head>
     <body>
         <div class="top-bar">
-            <a href="{% url 'home' %}"><h3 class="logo">RETRO EXCHANGE</h3></a>
+            <div class="logo-container">
+                <a href="{% url 'home' %}"><h3 class="logo"><img class="logo-img" src="media/r_e_logo.png">RETRO EXCHANGE</h3></a>
+            </div>
             <div class="search-con">
                 <form method="GET" action="" autocomplete="off">
                     <input class="search-bar" type="text" name="search" placeholder="Search for a product">
-                    <input class="search-button" type="submit">
+                    <button class="search-button" type="submit">
+                        <span>Search</span>
+                    </button>
                 </form>
             </div>
             <div class="basket">
-                <a href="">Basket <br> £000.00</a>
+                <a href=""> <img class="icon" src="media/basket.png"/>
+                    <br> 
+                    {% if grand_total %}
+                        ${{ grandtotal|floatformat:2 }}
+                    {% else %}
+                        £0.00
+                    {% endif %}
+                </a>
             </div>
         </div>
         <div class="account-bar">
