@@ -1,59 +1,23 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h3>Introuduction</h3>
 
-Welcome roy-finch,
+This is the read new file for my unit four milestone project.  This project will present a website that has been developed using django, CSS, HTML and other languages.  Far this units I must create a website that these develop completely using django and is the final units of the Code Institute's course.  Within this unit, I would like to create a web sites that it is really easy to numerous and offers users and ability to easily manage and control their accounts and also be able to search of buying products that they would like to purchase.  Within this project, I would like to have a web sites that begins to use interesting features but I have not tested in the previous units.  I would like to create a website that is visually appealing but also impressive to view.  Within this module is optional to use BootStrap but I will not use this as I would like more control of my CSS and my websites style.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+I would like to begin this unit by identifying what users would like to see from my website.  I would like to understand what I need to include within my website so that users expectations are met.  I would also like to think about the purpose of my site along with what I want to do to provide my service to review a viewer.  I would also like to think about is the theme, layouts and design of the site and what I need to do to truly create and encapsulate my idea.
 
-## Gitpod Reminders
+Within this site, I need to make sure that the website meets both my criteria and the criteria of the user/view.  I must keep in mind of what the user requires from a shopping sites.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+<h3>Users Expectations</h3>
 
-`python3 -m http.server`
+I think that users would have a series of expectations and wants that my website needs to provide.  Within the site, I feel as though the user would like to easily be able to search for a product by either category or searchbar.  The website should be easily understood and the user should be able to identify how to search for a product.  The site needs to contain an ability to filter searches by product type, price and rating.  Some users would like to be able to see the image of a product and the immediate needs to be of a respectable size.  Some users would like to be able to access the individual items to see a larger image and also to be able to see a summary of the product.
 
-A blue button should appear to click: _Make Public_,
+Some users would like to have easy access to their accounts and their personal information, whilst others would like to easily shop within my website and purchase without alot of hassil.  Some users would like to see offers for clearances of items that have been reduced.  I would like to create a home page that presents to the user a few list of products, like suggestions depending on accounts activity, what's new and possibly items that are reduced.
 
-Another blue button should appear to click: _Open Browser_.
+Some users would like to easily login and out of account, whilst some people would like a simple and straightforward way of saying all in creating an account.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+The purpose of my site is to provide a service were a user or viewer can come to my side to purchase a form of goods.  Within this module the site must allow for user to be able to make an account, to add items for basket's and to be able to search for and buy products.  The products I am thinking of using within the site are games as I am interested in games and old fashioned consoles.  I think that our website needs to be somewhat personal to the user as they can connect with the idea and website closer and be able to truly build the image of the website and connect with what they want to see on the site.  As I am thinking of creating a website that allows for users to purchase games and consoles I have began to think about the name of the website.
 
-A blue button should appear to click: _Make Public_,
+<h3>Initial Production</h3>
 
-Another blue button should appear to click: _Open Browser_.
+Some of the names of this website are retro resales, classics n' cash, cash the classics and finally retro exchange.  With the names that I have created I didn't necessarily feel as though retro resales and classics n' cash felt like they weren't professional or effective names to choice for the site.  I settled for the name retro exchange as I felt that this name fits the website better.  I plan on allowing users to be able to purchase and sell products what will see how it goes later on in production.  Once I had thought of a name I then began to search for a font that suited the theme that I was going for.  I settled for a font named Segoe UI as this font looked like what I was going for.  I wanted a font that looked more the feeling and professional or also looked different when the styles replied like bold and italic styling.  I made the logo very simple and originally threw around the idea of putting yellow in the logo, but I noticed that the yellow colour was hard to identify with a white background.  Once I had noticed that yellow did not work as initially intended by the end and settle for a basic black colouring on the letter RX.  I had chosen for local RX as a simplified version of retro exchange and also chosen to title the site R-Exchange as the simplified version of the name.  Both of these decisions where to create a simplified mean for users to nickname the site and also wanted a simple and effective logo design.  I always begin our web sites by creating a logo and name and selecting a font as I believe these aspects as they are part of the core identity of the website.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidently make it public then you can create a new one with _Regenerate API Key_.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
----
-
-Happy coding!
+Now that I have a name for my website a then begin to plan out the layout.  I think about what I want to present to the users at all times and what I want to include within the top navigation bar.  I understand that I would like to include a form of logo, the name of our web site, the searchbar or some way of finding the product and away to sign in or out and view the basket.  I then begin to develop the layout, working with what I want to include and were I want to include it.  I begin by creating a wire frame and think about how I want to lay out the homepage the logging in and signing up page and the product view page.  I would like to create two bars that contained the different bits of information that are fixed to the top and bottom of page.  For now I think I will settle with the signing in and signing up buttons in the bottom bar and the logo, the name, searchbar and baskets in the top bar.  I want to make sure that the user can access these bars no matter where they are on the website.  But when I begin to creates the mobile version of the site I may change the layout of the fixed bars.
