@@ -1,0 +1,20 @@
+<div class="nav-bar">
+    <div class="search-con">
+        <form method="GET" action="" autocomplete="off">
+            <input class="search-bar" type="text" name="search" placeholder="Search for a product">
+            <button class="search-button" type="submit">
+                <span>Search</span>
+            </button>
+        </form>
+    </div>
+    <div class="basket">
+        <a href=""> <img class="icon" src="media/basket.png"/>
+            <br> 
+            {% if grand_total %}
+                ${{ grandtotal|floatformat:2 }}
+            {% else %}
+                £0.00
+            {% endif %}
+        </a>
+    </div>
+</div>

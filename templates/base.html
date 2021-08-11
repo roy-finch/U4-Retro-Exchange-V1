@@ -28,59 +28,69 @@
                     color: black;
                 }
                 .top-bar {
-                    position: fixed;
+                    position: absolute;
                     top: -1px;
                     left: -1px;
                     border-bottom: 1px solid grey;
                     display: inline;
-                    width: 100%;
+                    width: 100vw;
                     padding-left: 20px;
                     z-index: 2;
                     background-color: white;
                 }
-                .account-bar {
-                    position: fixed;
-                    border-top: 1px solid grey;
-                    bottom: -1px;
+                .nav-bar {
+                    position: sticky;
+                    top: 0px;
+                    margin-top: 35px;
                     left: -1px;
-                    display: inline;
+                    border-bottom: 1px solid grey;
                     width: 100%;
-                    height: 30px;
-                    padding: 5px;
+                    padding-left: 20px;
                     z-index: 2;
-                    text-align: center;
+                    height: 60px;
                     background-color: white;
-                }
-                .account-bar > a {
-                    padding: 5px 22.5% 5px 22.5%;
                 }
                 .top-bar > h3, .search-con, .basket{
                     display: inline-block;
                 }
                 .basket {
-                    position: fixed;
                     width: 5vw;
                     height: 50px;
-                    right: 20px;
-                    top: -3px;
+                    right: 0px;
+                    top: 60px;
                     border-bottom: 1px solid grey;
                     text-align: center;
                     padding-top: 8px;
+                    margin-bottom: 10px;
+                }
+                .profile {
+                    position: absolute;
+                    width: 5vw;
+                    right: 0px;
+                    padding: 5px;
+                    top: -3px;
+                    text-align: center;
+                    margin-right: 6vw;
+                }
+                .signout {
+                    position: absolute;
+                    width: 5vw;
+                    right: 0px;
+                    padding: 5px;
+                    top: -3px;
+                    text-align: center;
+                    margin-right: 1vw;
                 }
                 .search-con {
-                    position: fixed;
-                    right: 8vw;
-                    top: 12px;
-                    border-bottom: 1px solid grey;
+                    border: 1px solid grey;
+                    border-radius: 5px;
+                    padding: 0px 5px 0px 5px
                 }
                 .main-content {
                     background-color: white;
-                    position: relative;
-                    width: 85vw;
-                    padding: 60px;
-                    margin: 120px 60px 0px 60px;
-                    box-shadow: grey 10px 10px;
-                    border: 1px solid black;
+                    position: absolute;
+                    width: 92vw;
+                    padding: 60px 150px 60px 60px;
                 }
                 .sub-content {
                     border-bottom: 1px solid grey;
@@ -95,12 +105,16 @@
                 .search-button {
                     outline: none;
                     border: none;
-                    padding: 2px;
-                    width: 75px;
+                    padding: 10px;
+                    width: 125px;
                     background-color: white;
                     text-align: center;
+                    border: 1px solid grey;
+                    border-radius: 5px;
                 }
                 .logo {
+                    margin: 2px;
+                    width: 40vw;
                     font-style: italic;
                     letter-spacing: -2px;
                     font-size: 20px;
@@ -126,37 +140,44 @@
             <div class="logo-container">
                 <a href="{% url 'home' %}"><h3 class="logo"><img class="logo-img" src="media/r_e_logo.png">RETRO EXCHANGE</h3></a>
             </div>
-            <div class="search-con">
-                <form method="GET" action="" autocomplete="off">
-                    <input class="search-bar" type="text" name="search" placeholder="Search for a product">
-                    <button class="search-button" type="submit">
-                        <span>Search</span>
-                    </button>
-                </form>
-            </div>
-            <div class="basket">
-                <a href=""> <img class="icon" src="media/basket.png"/>
-                    <br> 
-                    {% if grand_total %}
-                        ${{ grandtotal|floatformat:2 }}
-                    {% else %}
-                        £0.00
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-        <div class="account-bar">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                    <a href="">Edit Products</a>
+                    <div class="profile">
+                        <a href="">
+                            <br>
+                            <span>My Account</span>
+                        </a>
+                    </div>
+                    <div class="signout">
+                        <a href="{% url 'account_signout' %}"">
+                            <br>
+                            <span>Signout</span>
+                        </a>
+                    </div>
                 {% endif %}
-                <a href="">My Account</a>
-                <a href="{% url 'account_logout' %}">Signout</a>
+                    <div class="profile">
+                        <a href="">
+                            <br>
+                            <span>My Account</span>
+                        </a>
+                    </div>
+                    <div class="signout">
+                        <a href="{% url 'account_signout' %}">
+                            <br>
+                            <span>Signout</span>
+                        </a>
+                    </div>
             {% else %}
-                <a href="{% url 'account_signup' %}">Signup</a>
-                <a href="{% url 'account_login' %}">Login</a>
+                <div class="profile">
+                    <a href="{% url 'account_signup' %}">Signup</a>
+                </div>
+                <div class="signout">
+                    <a href="{% url 'account_login' %}">Login</a>
+                </div>
             {% endif %}
         </div>
+
+        {% include 'includes/main-nav.html' %}
 
         {% block page_header %}
         {% endblock %}
