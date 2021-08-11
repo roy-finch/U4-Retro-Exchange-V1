@@ -15,81 +15,96 @@
         {% block corecss %}
             <style>
                 html {
+                    min-width: 500px;
                     height: 100%;
                 }
                 body {
                     /* background: url('/media/background.png') no-repeat center center fixed;
                     background-size: cover; */
-                    font-family: "Segoe UI", "sans Serif";
+                    font-family: "Segoe UI", sans-serif;
                     overflow-x: hidden;
                 }
                 a {
-                    text-decoration: none;
+                    padding: 10px;
                     color: black;
+                    text-decoration: none;
                 }
                 .top-bar {
-                    position: absolute;
+                    position: fixed;
                     top: -1px;
                     left: -1px;
                     border-bottom: 1px solid grey;
                     display: inline;
-                    width: 100vw;
-                    padding-left: 20px;
+                    width: 100%;
                     z-index: 2;
                     background-color: white;
+                    height: 50px;
                 }
                 .nav-bar {
-                    position: sticky;
+                    position: fixed;
                     top: 0px;
-                    margin-top: 35px;
+                    margin-top: 50px;
                     left: -1px;
                     border-bottom: 1px solid grey;
                     width: 100%;
-                    padding-left: 20px;
                     z-index: 2;
                     height: 60px;
                     background-color: white;
                 }
-                .top-bar > h3, .search-con, .basket{
+                .top-bar > span, .search-con, .basket{
                     display: inline-block;
                 }
                 .basket {
+                    position: inherit;
                     width: 5vw;
                     height: 50px;
-                    right: 0px;
-                    top: 60px;
-                    border-bottom: 1px solid grey;
+                    right: 20px;
+                    margin: 8px 0px 5px 0px;
                     text-align: center;
-                    padding-top: 8px;
-                    margin-bottom: 10px;
                 }
-                .profile {
-                    position: absolute;
-                    width: 5vw;
-                    right: 0px;
-                    padding: 5px;
-                    top: -3px;
-                    text-align: center;
-                    margin-right: 6vw;
+                .basket a {
+                    padding: 2px;
                 }
-                .signout {
-                    position: absolute;
-                    width: 5vw;
+                .dropdown {
+                    top: 0px;
                     right: 0px;
-                    padding: 5px;
-                    top: -3px;
+                    background-color: #ffffff;
+                    position: absolute;
+                    margin: 5px 20px 0px 0px;
+                    padding: 10px;
+                }
+                .dropdown-container {
+                    width: 100%;
+                    margin-top: 2px;
                     text-align: center;
-                    margin-right: 1vw;
+                    display: none;
+                    right: 0px;
+                    position: absolute;
+                    z-index: 3;
+                    background-color: white;
+                }
+                .dropdown-container a {
+                    display: block;
+                    padding: 10px;
+                }
+                .dropdown:hover .dropdown-container {
+                    display: block;
                 }
                 .search-con {
+                    position: inherit;
+                    left: 375px;
+                    top: 0px;
+                    width: fit-content;
                     border: 1px solid grey;
-                    border-radius: 5px;
-                    padding: 0px 5px 0px 5px
+                    border-radius: 20px;
+                    margin-top: 5px;
+                    padding: 2px 5px 2px 10px
                 }
                 .main-content {
                     background-color: white;
                     position: absolute;
-                    width: 92vw;
+                    width: 88%;
+                    height: 200vh;
                     padding: 60px 150px 60px 60px;
                 }
                 .sub-content {
@@ -99,33 +114,46 @@
                 .search-bar, .search-bar:focus {
                     outline: none;
                     border: none;
-                    padding: 14px;
-                    width: 50vw;
+                    padding: 8px;
+                    width: 30vw;
                 }
                 .search-button {
                     outline: none;
                     border: none;
-                    padding: 10px;
+                    padding: 4px;
                     width: 125px;
                     background-color: white;
                     text-align: center;
                     border: 1px solid grey;
-                    border-radius: 5px;
+                    border-radius: 20px;
                 }
                 .logo {
                     margin: 2px;
-                    width: 40vw;
                     font-style: italic;
                     letter-spacing: -2px;
-                    font-size: 20px;
+                    font-size: 30px;
                 }
                 .logo-img {
-                    height: 1rem;
+                    height: 1.3rem;
                     width: 3rem;
                 }
                 .icon {
+                    margin: auto;
                     height: 1.25rem;
                     width: 2rem;
+                }
+                .no-default {
+                    text-decoration: hidden;
+                    outline: none;
+                    border: none;
+                    color: black;
+                    background-color: white;
+                }
+                .m-t-5 {
+                    margin-top: 5px;
+                }
+                .m-l-20 {
+                    margin-left: 20px;
                 }
             </style>
         {% endblock %}
@@ -137,44 +165,38 @@
     </head>
     <body>
         <div class="top-bar">
-            <div class="logo-container">
-                <a href="{% url 'home' %}"><h3 class="logo"><img class="logo-img" src="media/r_e_logo.png">RETRO EXCHANGE</h3></a>
+            <div class="logo-container m-l-20">
+                <a href="{% url 'home' %}"><span class="logo"><img class="logo-img" src="media/r_e_logo.png"><b>RETRO EXCHANGE</b></span></a>
             </div>
-            {% if request.user.is_authenticated %}
-                {% if request.user.is_superuser %}
-                    <div class="profile">
-                        <a href="">
-                            <br>
-                            <span>My Account</span>
-                        </a>
-                    </div>
-                    <div class="signout">
-                        <a href="{% url 'account_signout' %}"">
-                            <br>
-                            <span>Signout</span>
-                        </a>
-                    </div>
-                {% endif %}
-                    <div class="profile">
-                        <a href="">
-                            <br>
-                            <span>My Account</span>
-                        </a>
-                    </div>
-                    <div class="signout">
-                        <a href="{% url 'account_signout' %}">
-                            <br>
-                            <span>Signout</span>
-                        </a>
-                    </div>
-            {% else %}
-                <div class="profile">
-                    <a href="{% url 'account_signup' %}">Signup</a>
+            <div class="search-con m-l-20">
+                <form method="GET" action="" autocomplete="off">
+                    <input class="search-bar" type="text" name="search" placeholder="Search for a product">
+                    <button class="search-button" type="submit">
+                        <span>Search</span>
+                    </button>
+                </form>
+            </div>
+            <div class="dropdown">
+                    {% if request.user.is_authenticated %}
+                        <a class="no-default dropdown-a">My Accounts</a>
+                    {% else %}
+                        <a class="no-default dropdown-a">Create an Account</a>
+                    {% endif %}
+                
+                <div class="dropdown-container">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a class="no-default m-t-5" href="#">Edit Products</a>
+                            <a class="no-default" href="#">Signout</a>
+                        {% endif %}
+                        <a class="no-default m-t-5" href="#">My Account</a>
+                        <a class="no-default" href="#">Signout</a>
+                    {% else %}
+                        <a class="no-default m-t-5" href="#">Signup</a>
+                        <a class="no-default" href="#">Login</a>
+                    {% endif %}
                 </div>
-                <div class="signout">
-                    <a href="{% url 'account_login' %}">Login</a>
-                </div>
-            {% endif %}
+            </div>
         </div>
 
         {% include 'includes/main-nav.html' %}
