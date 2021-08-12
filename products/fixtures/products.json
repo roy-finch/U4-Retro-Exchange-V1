@@ -1,0 +1,18 @@
+[
+	{
+		"id": 20,
+		"model":"products.product",
+		"fields": {
+			"name": "nintendo_64_console",
+			"display_name": "Nintendo 64 Console",
+			"price": 60.00,
+			"console": "Nintendo 64",
+			"type": "Console",
+			"rating": 2.5,
+			"views": 72,
+			"description": "This is a console that was created by Nintendo during the late 1990 and was one of the first game consoles they had created with the ability to render 3D enviroments, this was done once they had saw a title on SNES that managed to create a 3D enviroment. This console has quiet a lot of games and uses cartridges just like its predicessors but is the last console to use cartidges.",
+			"image_loc": "",
+			"image_name": ""
+		}
+	}
+]
