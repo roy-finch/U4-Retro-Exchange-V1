@@ -1,12 +1,9 @@
 <div class="nav-bar">
-    <div class="basket">
-        <a href=""> <img class="icon" src="media/basket.png"/>
-            <br> 
-            {% if grand_total %}
-                ${{ grandtotal|floatformat:2 }}
-            {% else %}
-                £0.00
-            {% endif %}
-        </a>
-    </div>
+    <form>
+        <input list="console">
+        <datalist id="console">
+            <option value="No Specific Console"></option>
+            <option value="Nintendo 64">
+        </datalist>
+    </form>
 </div>

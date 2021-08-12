@@ -15,84 +15,150 @@
         {% block corecss %}
             <style>
                 html {
-                    min-width: 500px;
                     height: 100%;
                 }
                 body {
                     /* background: url('/media/background.png') no-repeat center center fixed;
                     background-size: cover; */
+                    min-width: 700px;
                     font-family: "Segoe UI", sans-serif;
                     overflow-x: hidden;
                 }
                 a {
-                    padding: 10px;
+                    padding: 5px;
                     color: black;
                     text-decoration: none;
+                }
+                .s-icon {
+                    margin: auto;
+                    height: 1.25rem;
+                    width: 1.25rem;
+                }
+                .m-icon {
+                    margin: auto;
+                    height: 2rem;
+                    width: 4rem;
+                }
+                .no-default {
+                    text-decoration: hidden;
+                    outline: none;
+                    border: none;
+                    color: black;
+                    background-color: white;
+                }
+                .circle-container {
+                    padding: 5px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                }
+                .m-t-5 {
+                    margin-top: 5px;
+                }
+                .m-l-20 {
+                    margin-left: 20px;
                 }
                 .top-bar {
                     position: fixed;
                     top: -1px;
                     left: -1px;
-                    border-bottom: 1px solid grey;
                     display: inline;
                     width: 100%;
-                    z-index: 2;
+                    z-index: 1;
                     background-color: white;
                     height: 50px;
                 }
                 .nav-bar {
                     position: fixed;
                     top: 0px;
-                    margin-top: 50px;
+                    margin-top: 45px;
                     left: -1px;
-                    border-bottom: 1px solid grey;
                     width: 100%;
-                    z-index: 2;
+                    z-index: 1;
                     height: 60px;
-                    background-color: white;
                 }
                 .top-bar > span, .search-con, .basket{
                     display: inline-block;
                 }
                 .basket {
-                    position: inherit;
-                    width: 5vw;
-                    height: 50px;
-                    right: 20px;
-                    margin: 8px 0px 5px 0px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    position: fixed;
+                    width: 100px;
+                    height: 90px;
+                    right: 0px;
+                    bottom: -20px;
+                    margin: 8px 10px 0px 0px;
+                    padding-top: 15px;
                     text-align: center;
+                    font-size: 20px;
                 }
                 .basket a {
                     padding: 2px;
                 }
                 .dropdown {
-                    top: 0px;
-                    right: 0px;
+                    z-index: 2;
                     background-color: #ffffff;
-                    position: absolute;
-                    margin: 5px 20px 0px 0px;
-                    padding: 10px;
+                    padding: 8px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
                 }
                 .dropdown-container {
                     width: 100%;
-                    margin-top: 2px;
-                    text-align: center;
                     display: none;
-                    right: 0px;
-                    position: absolute;
-                    z-index: 3;
-                    background-color: white;
+                    margin-top: 8px;
+                    text-align: center;
                 }
                 .dropdown-container a {
+                    background-color: white;
+                    border: 1px solid grey;
+                    border-radius: 20px;
                     display: block;
-                    padding: 10px;
+                    width: 80%;
+                    margin-left: 6%;
+                    margin-bottom: 4px;
                 }
                 .dropdown:hover .dropdown-container {
                     display: block;
                 }
+                .account {
+                    top: 0px;
+                    right: 0px;
+                    margin-top: 6px;
+                    margin-right: 6px;
+                    position: absolute;
+                }
+                .sub-account {
+                    right: 0px;
+                    position: absolute;
+                    z-index: 6;
+                }
+                .consoles {
+                    top: 0px;
+                    left: 0px;
+                    margin-left: 6px;
+                    position: absolute;
+                }
+                .sub-consoles {
+                    right: 0px;
+                    position: absolute;
+                    z-index: 6;
+                }
+                .main-content {
+                    background-color: white;
+                    position: absolute;
+                    width: 100%;
+                    height: 200vh;
+                    padding: 60px 60px 60px 60px;
+                }
+                .sub-content {
+                    border-radius: 20px;
+                    border: 1px solid grey;
+                    padding: 30px;
+                    width: 88%;
+                }
                 .search-con {
                     position: inherit;
-                    left: 375px;
+                    right: 170px;
                     top: 0px;
                     width: fit-content;
                     border: 1px solid grey;
@@ -100,26 +166,15 @@
                     margin-top: 5px;
                     padding: 2px 5px 2px 10px
                 }
-                .main-content {
-                    background-color: white;
-                    position: absolute;
-                    width: 88%;
-                    height: 200vh;
-                    padding: 60px 150px 60px 60px;
-                }
-                .sub-content {
-                    border-bottom: 1px solid grey;
-                    padding: 30px;
-                }
-                .search-bar, .search-bar:focus {
-                    outline: none;
-                    border: none;
+                .search-bar {
+                    top: 0px;
+                    left: 0px;
                     padding: 8px;
-                    width: 30vw;
+                    width: calc(100%-130px);
                 }
                 .search-button {
-                    outline: none;
-                    border: none;
+                    margin-left: 20px;
+                    top: 0px;
                     padding: 4px;
                     width: 125px;
                     background-color: white;
@@ -137,24 +192,6 @@
                     height: 1.3rem;
                     width: 3rem;
                 }
-                .icon {
-                    margin: auto;
-                    height: 1.25rem;
-                    width: 2rem;
-                }
-                .no-default {
-                    text-decoration: hidden;
-                    outline: none;
-                    border: none;
-                    color: black;
-                    background-color: white;
-                }
-                .m-t-5 {
-                    margin-top: 5px;
-                }
-                .m-l-20 {
-                    margin-left: 20px;
-                }
             </style>
         {% endblock %}
 
@@ -165,35 +202,35 @@
     </head>
     <body>
         <div class="top-bar">
-            <div class="logo-container m-l-20">
+            <div class="logo-container m-l-20 m-t-5">
                 <a href="{% url 'home' %}"><span class="logo"><img class="logo-img" src="media/r_e_logo.png"><b>RETRO EXCHANGE</b></span></a>
             </div>
             <div class="search-con m-l-20">
                 <form method="GET" action="" autocomplete="off">
-                    <input class="search-bar" type="text" name="search" placeholder="Search for a product">
-                    <button class="search-button" type="submit">
+                    <input class="search-bar no-default" type="text" name="search" placeholder="Search for a product">
+                    <button class="search-button no-default" type="submit">
                         <span>Search</span>
                     </button>
                 </form>
             </div>
-            <div class="dropdown">
+            <div class="dropdown account">
                     {% if request.user.is_authenticated %}
-                        <a class="no-default dropdown-a">My Accounts</a>
+                        <a class="no-default">My Accounts</a>
                     {% else %}
-                        <a class="no-default dropdown-a">Create an Account</a>
+                        <a class="no-default">Create an Account</a>
                     {% endif %}
                 
-                <div class="dropdown-container">
+                <div class="dropdown-container sub-account">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
                             <a class="no-default m-t-5" href="#">Edit Products</a>
-                            <a class="no-default" href="#">Signout</a>
+                            <a class="no-default" href="{% url 'account_signout' %}">Signout</a>
                         {% endif %}
                         <a class="no-default m-t-5" href="#">My Account</a>
-                        <a class="no-default" href="#">Signout</a>
+                        <a class="no-default" href="{% url 'account_signout' %}">Signout</a>
                     {% else %}
-                        <a class="no-default m-t-5" href="#">Signup</a>
-                        <a class="no-default" href="#">Login</a>
+                        <a class="no-default m-t-5" href="{% url 'account_signup' %}">Signup</a>
+                        <a class="no-default" href="{% url 'account_login' %}">Login</a>
                     {% endif %}
                 </div>
             </div>
@@ -206,6 +243,19 @@
 
         {% block content %}
         {% endblock %}
-        
+
+        <div class="basket">
+            <a href="">
+                <b>
+                    <img class="m-icon" src="media/basket.png"/>
+                <br> 
+                {% if grand_total %}
+                    ${{ grandtotal|floatformat:2 }}
+                {% else %}
+                    £0.00
+                {% endif %}
+                </b>
+            </a>
+        </div>
     </body>
 </html>
