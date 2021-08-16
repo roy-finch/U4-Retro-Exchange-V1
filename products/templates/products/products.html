@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+    <div class="main-content">
+        <div class="sub-content">
+            <b>All Products</b>
+            {% for product in products %}
+                <p>{{ product.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
