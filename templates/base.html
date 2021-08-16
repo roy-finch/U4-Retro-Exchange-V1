@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
 
-        <link rel="shortcut icon" href="media/r_e_logo.png">
+        <link rel="shortcut icon" href="/media/r_e_logo.png">
 
         {% block meta %}
             <meta charset="UTF-8">
@@ -14,278 +14,291 @@
 
         {% block corecss %}
             <style>
+                @media only screen and (max-width: 850px) {
+                    .sub-content {
+                        width: 99%;
+                    }
+                    .center-block div {
+                        width: 95%;
+                        height: 100%;
+                    }
+                }
+                @media only screen and (min-width: 850px) {
+                    .sub-content {
+                        padding: 30px;
+                        width: 95%;
+                    }
+                    .center-block div {
+                        display: inline-block;
+                        width: 45%;
+                    }
+                }
                 html {
-                    height: 100%;
-                }
-                body {
-                    background: url('/media/background.jpg') no-repeat center center fixed;
-                    background-size: cover;
-                    min-width: 700px;
-                    font-family: "Segoe UI", sans-serif;
-                    overflow-x: hidden;
-                }
-                a {
-                    padding: 5px;
-                    color: black;
-                    text-decoration: none;
-                }
-                .s-icon {
-                    margin: auto;
-                    height: 1.25rem;
-                    width: 1.25rem;
-                }
-                .m-icon {
-                    margin: auto;
-                    height: 2rem;
-                    width: 4rem;
-                }
-                .no-default {
-                    text-decoration: hidden;
-                    outline: none;
-                    border: none;
-                    color: black;
-                    background-color: white;
-                }
-                .circle-container {
-                    padding: 5px;
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                }
-                .m-t-5 {
-                    margin-top: 5px;
-                }
-                .m-l-20 {
-                    margin-left: 20px;
-                }
-                .top-bar {
-                    position: fixed;
-                    top: -2px;
-                    left: -1px;
-                    display: inline;
-                    width: 100%;
-                    z-index: 1;
-                    background-color: white;
-                    border: 1px solid grey;
-                    height: 50px;
-                }
-                .nav-bar {
-                    position: fixed;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    margin-top: 49px;
-                    z-index: 1;
-                    height: 80px;
-                }
-                .top-bar > span, .search-con, .basket{
-                    display: inline-block;
-                }
-                .basket {
-                    background-color: white;
-                    border: 1px solid grey;
-                    border-bottom: none;
-                    border-top-left-radius: 20px;
-                    border-top-right-radius: 20px;
-                    position: fixed;
-                    width: 100px;
-                    height: fit-content;
-                    padding-bottom: 10px;
-                    right: 0px;
-                    bottom: -2px;
-                    margin: 8px 10px 0px 0px;
-                    padding-top: 15px;
-                    text-align: center;
-                    font-size: 20px;
-                }
-                .basket a {
-                    padding: 2px;
-                }
-                .dropdown {
-                    z-index: 2;
-                    padding: 8px;
-                    border-radius: 20px;
-                }
-                .dropdown-container {
-                    width: 100%;
-                    display: none;
-                    margin-top: 8px;
-                    text-align: center;
-                }
-                .dropdown-container a {
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                    display: block;
-                    width: 80%;
-                    margin-left: 6%;
-                    margin-bottom: 4px;
-                }
-                .dropdown:hover .dropdown-container {
-                    display: block;
-                }
-                .account {
-                    border: 1px solid grey;
-                    top: 0px;
-                    right: 0px;
-                    margin-top: 6px;
-                    margin-right: 6px;
-                    position: absolute;
-                }
-                .sub-account {
-                    right: 0px;
-                    position: absolute;
-                    z-index: 6;
-                }
-                .consoles {
-                    top: 0px;
-                    left: 0px;
-                    margin-left: 6px;
-                    position: absolute;
-                }
-                .sub-consoles {
-                    right: 0px;
-                    position: absolute;
-                    z-index: 6;
-                }
-                .main-content {
-                    background-color: white;
-                    width: 90%;
-                    margin: auto;
-                    height: 100%;
-                    padding-top: 120px;
-                }
-                .sub-content {
-                    padding: 30px;
-                    width: 95%;
-                    margin: auto;
-                    margin-bottom: 10px;
-                }
-                .outer-pro-container{
-                    width: 90%;
-                    margin: 0px auto 0px auto;
-                    text-align: center;
-                }
-                .product-container {
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                    border-bottom-right-radius: 20px;
-                    width: 250px;
-                    height: 300px;
-                    margin: 10px;
-                    display: inline-block;
-                    text-align: center;
-                    padding: 20px;
-                }
-                .product-container button {
-                    border-radius: 20px;
-                    font-size: 20px;
-                    border: none;
-                    outline: none;
-                    padding: 20px;
-                    width: 100%;
-                    vertical-align: bottom;
-                }
-                .product-container img {
-                    width: 200px;
-                    height: 110px;
-                }
-                .name {
-                    height: 50px;
-                }
-                .price {
-                    font-size: 18px;
-                }
-                .search-container {
-                    position: fixed;
-                    top: 0px;
-                    right: 175px;
-                    margin-top: 6px;
-                    width: fit-content;
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                    padding: 2px 5px 2px 10px;
-                    background-color: white;
-                }
-                .search-bar {
-                    top: 0px;
-                    left: 0px;
-                    padding: 8px;
-                    width: calc(100%-130px);
-                }
-                .search-button {
-                    margin-left: 20px;
-                    top: 0px;
-                    padding: 4px;
-                    width: 125px;
-                    text-align: center;
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                }
-                .logo {
-                    margin: 2px;
-                    font-style: italic;
-                    letter-spacing: -2px;
-                    font-size: 30px;
-                }
-                .logo-img {
-                    height: 1.3rem;
-                    width: 3rem;
-                }
-                .filter-form {
-                    background-color: white;
-                    width: fit-content;
-                    margin: auto;
-                    padding: 15px;
-                    border: 1px solid grey;
-                    border-top: none;
-                    z-index: 2;
-                    border-bottom-left-radius: 20px;
-                    border-bottom-right-radius: 20px;
-                }
-                .filter {
-                    width: 200px;
-                    padding: 15px;
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                }
-                .filter-button {
-                    font-size: 16px;
-                    padding: 10px;
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                }
-                .center-text {
-                    text-align: center;
-                }
-                .black-white {
-                    background-color: black;
-                    color: white;
-                }
-                .start-shopping {
-                    width: 100%;
-                    text-align: center;
-                }
-                .start-shopping button {
-                    width: 90%;
-                    height: 50px;
-                    margin: auto;
-                    margin-bottom: 20px;
-                    border-radius: 20px;
-                    font-size: 30px;
-                }
-                .center-block {
-                    text-align: center;
-                    width: 95%;
-                    margin: auto;
-                    height: 300px;
-                    border: 1px solid grey;
-                    border-radius: 20px;
-                    margin-bottom: 20px;
-                }
-                .center-block div {
-                    display: inline-block;
-                    width: 45%;
-                    height: 100%;
-                }
+                        height: 100%;
+                    }
+                    body {
+                        background: url('/media/background.jpg') no-repeat center center fixed;
+                        background-size: cover;
+                        font-family: "Segoe UI", sans-serif;
+                        overflow-x: hidden;
+                    }
+                    a {
+                        padding: 5px;
+                        color: black;
+                        text-decoration: none;
+                    }
+                    .s-icon {
+                        margin: auto;
+                        height: 1.25rem;
+                        width: 1.25rem;
+                    }
+                    .m-icon {
+                        margin: auto;
+                        height: 2rem;
+                        width: 4rem;
+                    }
+                    .no-default {
+                        text-decoration: hidden;
+                        outline: none;
+                        border: none;
+                        color: black;
+                        background-color: white;
+                    }
+                    .circle-container {
+                        padding: 5px;
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                    }
+                    .m-t-5 {
+                        margin-top: 5px;
+                    }
+                    .m-l-20 {
+                        margin-left: 20px;
+                    }
+                    .main-content {
+                        background-color: white;
+                        width: 90%;
+                        margin: auto;
+                        height: fit-content;
+                        padding-top: 120px;
+                    }
+                    .sub-content {
+                        margin: auto;
+                        margin-bottom: 10px;
+                    }
+                    .top-bar {
+                        position: fixed;
+                        top: -2px;
+                        left: -1px;
+                        display: inline;
+                        width: 100%;
+                        z-index: 1;
+                        background-color: white;
+                        border: 1px solid grey;
+                        height: 50px;
+                    }
+                    .nav-bar {
+                        position: fixed;
+                        top: 0px;
+                        left: 0px;
+                        width: 100%;
+                        margin-top: 49px;
+                        z-index: 1;
+                        height: 80px;
+                    }
+                    .top-bar > span, .search-con, .basket{
+                        display: inline-block;
+                    }
+                    .basket {
+                        background-color: white;
+                        border: 1px solid grey;
+                        border-bottom: none;
+                        border-top-left-radius: 20px;
+                        border-top-right-radius: 20px;
+                        position: fixed;
+                        width: 100px;
+                        height: fit-content;
+                        padding-bottom: 10px;
+                        right: 0px;
+                        bottom: -2px;
+                        margin: 8px 10px 0px 0px;
+                        padding-top: 15px;
+                        text-align: center;
+                        font-size: 20px;
+                    }
+                    .basket a {
+                        padding: 2px;
+                    }
+                    .dropdown {
+                        padding: 8px;
+                        border-radius: 20px;
+                    }
+                    .dropdown-container {
+                        width: 100%;
+                        display: none;
+                        margin-top: 8px;
+                        text-align: center;
+                    }
+                    .dropdown-container a {
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                        display: block;
+                        width: 80%;
+                        margin-left: 6%;
+                        margin-bottom: 4px;
+                    }
+                    .dropdown:hover .dropdown-container {
+                        display: block;
+                    }
+                    .account {
+                        border: 1px solid grey;
+                        top: 0px;
+                        right: 0px;
+                        margin-top: 6px;
+                        margin-right: 6px;
+                        position: absolute;
+                    }
+                    .sub-account {
+                        right: 0px;
+                        position: absolute;
+                        z-index: 6;
+                    }
+                    .consoles {
+                        top: 0px;
+                        left: 0px;
+                        margin-left: 6px;
+                        position: absolute;
+                    }
+                    .sub-consoles {
+                        right: 0px;
+                        position: absolute;
+                        z-index: 6;
+                    }
+                    .outer-pro-container{
+                        width: 90%;
+                        margin: 0px auto 0px auto;
+                        text-align: center;
+                    }
+                    .product-container {
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                        border-bottom-right-radius: 20px;
+                        width: 250px;
+                        height: 300px;
+                        margin: 10px;
+                        display: inline-block;
+                        text-align: center;
+                        padding: 20px;
+                    }
+                    .product-container button {
+                        border-radius: 20px;
+                        font-size: 20px;
+                        border: none;
+                        outline: none;
+                        padding: 20px;
+                        width: 100%;
+                        vertical-align: bottom;
+                    }
+                    .product-container img {
+                        width: 200px;
+                        height: 110px;
+                    }
+                    .name {
+                        height: 50px;
+                    }
+                    .price {
+                        font-size: 18px;
+                    }
+                    .search-container {
+                        position: fixed;
+                        top: 0px;
+                        right: 175px;
+                        margin-top: 6px;
+                        width: fit-content;
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                        padding: 2px 5px 2px 10px;
+                        background-color: white;
+                    }
+                    .search-bar {
+                        top: 0px;
+                        left: 0px;
+                        padding: 8px;
+                        width: calc(100%-130px);
+                    }
+                    .search-button {
+                        margin-left: 20px;
+                        top: 0px;
+                        padding: 4px;
+                        width: 125px;
+                        text-align: center;
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                    }
+                    .logo {
+                        margin: 2px;
+                        font-style: italic;
+                        letter-spacing: -2px;
+                        font-size: 30px;
+                    }
+                    .logo-img {
+                        height: 1.3rem;
+                        width: 3rem;
+                    }
+                    .filter-form {
+                        background-color: white;
+                        width: fit-content;
+                        margin: auto;
+                        padding: 15px;
+                        border: 1px solid grey;
+                        border-top: none;
+                        z-index: 2;
+                        border-bottom-left-radius: 20px;
+                        border-bottom-right-radius: 20px;
+                    }
+                    .filter {
+                        width: 200px;
+                        padding: 15px;
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                    }
+                    .filter-button {
+                        font-size: 16px;
+                        padding: 10px;
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                    }
+                    .center-text {
+                        text-align: center;
+                    }
+                    .black-white {
+                        background-color: black;
+                        color: white;
+                    }
+                    .start-shopping {
+                        width: 100%;
+                        text-align: center;
+                    }
+                    .start-shopping button {
+                        width: 90%;
+                        height: fit-content;
+                        margin: auto;
+                        margin-bottom: 20px;
+                        border-radius: 20px;
+                        font-size: 30px;
+                    }
+                    .center-block {
+                        text-align: center;
+                        width: 95%;
+                        margin: auto;
+                        height: fit-content;
+                        border: 1px solid grey;
+                        border-radius: 20px;
+                        margin-bottom: 20px;
+                    }
+                    .center-block div {
+                        height: 100%;
+                    }
             </style>
         {% endblock %}
 
