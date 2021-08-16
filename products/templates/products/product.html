@@ -8,16 +8,12 @@
             <p class="center-text">These are all the products that are listed below. You can search or filter the searches to try and narrow down your searchs for the products that you want to see.</p>
             <hr>
             <div class="outer-pro-container">
-                {% for product in products %}
-                    <div class="product-container">
-                        <a href="{{ product.pk }}">
-                            <img src="/media/{{ product.image }}">
-                            <p class="name">{{ product.name }}</p>
-                            <p class="price">£ {{ product.price }}</p>
-                            <button class="black-white">Add to Basket</button>
-                        </a>
-                    </div>
-                {% endfor %}
+                <div class="product-container">
+                    <img src="/media/{{ product.image }}">
+                    <p class="name">{{ product.name }}</p>
+                    <p class="price">£ {{ product.price }}</p>
+                    <button class="black-white">Add to Basket</button>
+                </div>
             </div>
             <hr>
         </div>

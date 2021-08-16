@@ -102,9 +102,7 @@
                 }
                 .dropdown {
                     z-index: 2;
-                    background-color: #ffffff;
                     padding: 8px;
-                    border: 1px solid grey;
                     border-radius: 20px;
                 }
                 .dropdown-container {
@@ -114,7 +112,6 @@
                     text-align: center;
                 }
                 .dropdown-container a {
-                    background-color: white;
                     border: 1px solid grey;
                     border-radius: 20px;
                     display: block;
@@ -126,6 +123,7 @@
                     display: block;
                 }
                 .account {
+                    border: 1px solid grey;
                     top: 0px;
                     right: 0px;
                     margin-top: 6px;
@@ -150,16 +148,51 @@
                 }
                 .main-content {
                     background-color: white;
-                    width: 80%;
+                    width: 90%;
                     margin: auto;
                     height: 100%;
-                    padding-top: 150px;
+                    padding-top: 120px;
                 }
                 .sub-content {
                     padding: 30px;
                     width: 95%;
                     margin: auto;
                     margin-bottom: 10px;
+                }
+                .outer-pro-container{
+                    width: 90%;
+                    margin: 0px auto 0px auto;
+                    text-align: center;
+                }
+                .product-container {
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                    width: 250px;
+                    height: 300px;
+                    margin: 10px;
+                    display: inline-block;
+                    text-align: center;
+                    padding: 20px;
+                }
+                .product-container button {
+                    border-radius: 20px;
+                    font-size: 20px;
+                    border: none;
+                    outline: none;
+                    padding: 20px;
+                    width: 100%;
+                    vertical-align: bottom;
+                }
+                .product-container img {
+                    width: 200px;
+                    height: 110px;
+                }
+                .name {
+                    height: 50px;
+                }
+                .price {
+                    font-size: 18px;
                 }
                 .search-container {
                     position: fixed;
@@ -183,7 +216,6 @@
                     top: 0px;
                     padding: 4px;
                     width: 125px;
-                    background-color: white;
                     text-align: center;
                     border: 1px solid grey;
                     border-radius: 20px;
@@ -221,6 +253,39 @@
                     border: 1px solid grey;
                     border-radius: 20px;
                 }
+                .center-text {
+                    text-align: center;
+                }
+                .black-white {
+                    background-color: black;
+                    color: white;
+                }
+                .start-shopping {
+                    width: 100%;
+                    text-align: center;
+                }
+                .start-shopping button {
+                    width: 90%;
+                    height: 50px;
+                    margin: auto;
+                    margin-bottom: 20px;
+                    border-radius: 20px;
+                    font-size: 30px;
+                }
+                .center-block {
+                    text-align: center;
+                    width: 95%;
+                    margin: auto;
+                    height: 300px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    margin-bottom: 20px;
+                }
+                .center-block div {
+                    display: inline-block;
+                    width: 45%;
+                    height: 100%;
+                }
             </style>
         {% endblock %}
 
@@ -234,7 +299,7 @@
             <div class="logo-container m-l-20 m-t-5">
                 <a href="{% url 'home' %}">
                     <span class="logo">
-                        <img class="logo-img" src="media/r_e_logo.png"/>
+                        <img class="logo-img" src="/media/r_e_logo.png"/>
                         <b>RETRO EXCHANGE</b>
                     </span>
                 </a>
@@ -280,7 +345,7 @@
         <div class="basket">
             <a href="">
                 <b>
-                    <img class="m-icon" src="media/basket.png"/>
+                    <img class="m-icon" src="/media/basket.png"/>
                 <br> 
                 {% if grand_total %}
                     ${{ grandtotal|floatformat:2 }}
