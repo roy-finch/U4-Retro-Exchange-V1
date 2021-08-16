@@ -14,23 +14,44 @@
 
         {% block corecss %}
             <style>
-                @media only screen and (max-width: 850px) {
-                    .sub-content {
-                        width: 99%;
-                    }
+                @media only screen and (max-width: 1472px) {
                     .center-block div {
                         width: 95%;
                         height: 100%;
                     }
                 }
-                @media only screen and (min-width: 850px) {
-                    .sub-content {
-                        padding: 30px;
-                        width: 95%;
-                    }
+                @media only screen and (min-width: 1472px) {
                     .center-block div {
                         display: inline-block;
                         width: 45%;
+                    }
+                }
+                @media only screen and (max-width: 1150px) {
+                    .filter-form {
+                        text-align: center;
+                        margin: auto;
+                        width: 525px;
+                    }
+                    .filter {
+                        width: 500px;
+                        margin: 5px 0px 5px 0px;
+                    }
+                    .main-content {
+                        padding: 300px 0px 0px 0px;
+                    }
+                }
+                @media only screen and (min-width: 1150px) {
+                    .filter-form {
+                        text-align: none;
+                        width: fit-content;
+                        margin: auto;
+                    }
+                    .filter {
+                        width: 200px;
+                        margin: 5px 0px 5px 0px;
+                    }
+                    .main-content {
+                        padding: 150px 0px 0px 0px;
                     }
                 }
                 html {
@@ -80,9 +101,10 @@
                         width: 90%;
                         margin: auto;
                         height: fit-content;
-                        padding-top: 120px;
                     }
                     .sub-content {
+                        display: inline-block;
+                        width: 100%;
                         margin: auto;
                         margin-bottom: 10px;
                     }
@@ -247,8 +269,6 @@
                     }
                     .filter-form {
                         background-color: white;
-                        width: fit-content;
-                        margin: auto;
                         padding: 15px;
                         border: 1px solid grey;
                         border-top: none;
@@ -257,7 +277,6 @@
                         border-bottom-right-radius: 20px;
                     }
                     .filter {
-                        width: 200px;
                         padding: 15px;
                         border: 1px solid grey;
                         border-radius: 20px;
