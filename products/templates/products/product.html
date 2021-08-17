@@ -2,20 +2,24 @@
 {% load static %}
 
 {% block content%}
-    <div class="main-content">
-        <div class="sub-content">
-            <h3 class="center-text"><b>All Products</b></h3>
-            <p class="center-text">These are all the products that are listed below. You can search or filter the searches to try and narrow down your searchs for the products that you want to see.</p>
-            <hr>
-            <div class="outer-pro-container">
-                <div class="product-container">
-                    <img src="/media/{{ product.image }}">
-                    <p class="name">{{ product.name }}</p>
-                    <p class="price">£ {{ product.price }}</p>
+    <div class="main-content m-b-20">
+        <hr>
+        <div class="side-content">
+            <div class="product center-text">
+                <img src="/media/{{ products.image }}">
+            </div>
+        </div>
+        <div class="side-content">
+            <div class="product">
+                <h2 class="center-text logo"><b>{{product.name}}</b></h2>
+                <p class="name center-text">{{ products.name }}</p>
+                <p class="detail">{{ products.description }}</p>
+                <div class="price-container">
+                    <p class="price center-text">£ {{ products.price }}</p>
                     <button class="black-white">Add to Basket</button>
                 </div>
             </div>
-            <hr>
         </div>
+        <hr>
     </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 <div class="nav-bar">
-    <form class="filter-form" method="GET" action="">
+    <form class="filter-form" method="GET" action="{% url 'products' %}">
         <input placeholder="What console to search for?" class="no-default filter" name="c" list="console"/>
         <datalist id="console">
             <option value="No Specific Console"/>
@@ -25,11 +25,11 @@
         </datalist>
         <input placeholder="What filter to apply?" class="no-default filter" name="f" list="filter"/>
         <datalist id="filter">
-            <option value="Ascending Price"/>
-            <option value="Decending Price"/>
-            <option value="Rating"/>
-            <option value="Popularity"/>
-            <option value="Alphabetical"/>
+            <option value=""/>Ascending Price</option>
+            <option value=""/>Decending Price</option>
+            <option value=""/>Rating</option>
+            <option value=""/>Popularity</option>
+            <option value=""/>Alphabetical</option>
         </datalist>
         <button class="no-default filter-button" type="submit">
             Submit
