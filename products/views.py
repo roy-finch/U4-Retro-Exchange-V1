@@ -23,8 +23,11 @@ def all_products(request):
         if request.GET["search"] is None or request.GET["search"] == "":
             query = [request.GET["c"], request.GET["q"], request.GET["f"]]
             if query[2] != "":
-                if query[2] == "Alphabetical":
+                if query[2] == "A-Z":
                     sortkey = f'{"lower_name"}'
+                    products = products.annotate(lower_name=Lower("name"))
+                if query[2] == "Z-A":
+                    sortkey = f'-{"lower_name"}'
                     products = products.annotate(lower_name=Lower("name"))
                 if query[2] == "Ascending Price":
                     sortkey = f'{"price"}'
@@ -32,10 +35,11 @@ def all_products(request):
                     sortkey = f'-{"price"}'
                 if query[2] == "Rating":
                     sortkey = f'{"rating"}'
-                products = products.order_by(sortkey)
+                if sortkey is not None:
+                    products = products.order_by(sortkey)
             if not query:
                 return redirect("home")
-            
+
             if query[0] in consoles:
                 ids[0] = consoles.index(query[0])
             else:

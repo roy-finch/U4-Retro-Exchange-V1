@@ -6,12 +6,13 @@
                 <span>Search</span>
             </button>
         </div>
-        <select placeholder="What console to search for?" class="no-default filter" name="c" list="console"/>
-            <option value=""/>No Specific Console</option>
-            <option value="Nintendo 64"/>No Specific Console</option>
-            <option value="NES"/>No Specific Console</option>
-            <option value="SNES"/>No Specific Console</option>
-        </select>
+        <input placeholder="What console to search for?" class="no-default filter" name="c" list="console"/>
+        <datalist id="console">
+            <option value="No Specific Console"/>
+            <option value="Nintendo 64"/>
+            <option value="NES"/>
+            <option value="SNES"/>
+        </datalist>
         <input placeholder="What to search for?" class="no-default filter" name="q" list="search-for"/>
         <datalist id="search-for">
             <option value="Consoles"/>
@@ -22,7 +23,8 @@
         </datalist>
         <input placeholder="What filter to apply?" class="no-default filter" name="f" list="filter"/>
         <datalist id="filter">
-            <option value="Alphabetical"/>
+            <option value="A-Z"/>
+            <option value="Z-A"/>
             <option value="Ascending Price"/>
             <option value="Decending Price"/>
             <option value="Rating"/>
