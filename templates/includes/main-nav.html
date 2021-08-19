@@ -1,20 +1,17 @@
 <div class="nav-bar">
     <form class="filter-form" method="GET" action="{% url 'products' %}">
-        <input placeholder="What console to search for?" class="no-default filter" name="c" list="console"/>
-        <datalist id="console">
-            <option value="No Specific Console"/>
-            <option value="Nintendo 64"/>
-            <option value="Gamecube"/>
-            <option value="NES"/>
-            <option value="SNES"/>
-            <option value="Xbox"/>
-            <option value="Xbox 360"/>
-            <option value="PlayStation"/>
-            <option value="PlayStation 2"/>
-            <option value="PlayStation 3"/>
-            <option value="Sega Mega Drive"/>
-            <option value="Sega Master System"/>
-        </datalist>
+        <div class="search-container">
+            <input class="search-bar no-default" type="text" name="search" placeholder="Search for a product"/>
+            <button class="search-button no-default" type="submit">
+                <span>Search</span>
+            </button>
+        </div>
+        <select placeholder="What console to search for?" class="no-default filter" name="c" list="console"/>
+            <option value=""/>No Specific Console</option>
+            <option value="Nintendo 64"/>No Specific Console</option>
+            <option value="NES"/>No Specific Console</option>
+            <option value="SNES"/>No Specific Console</option>
+        </select>
         <input placeholder="What to search for?" class="no-default filter" name="q" list="search-for"/>
         <datalist id="search-for">
             <option value="Consoles"/>
@@ -25,11 +22,10 @@
         </datalist>
         <input placeholder="What filter to apply?" class="no-default filter" name="f" list="filter"/>
         <datalist id="filter">
-            <option value=""/>Ascending Price</option>
-            <option value=""/>Decending Price</option>
-            <option value=""/>Rating</option>
-            <option value=""/>Popularity</option>
-            <option value=""/>Alphabetical</option>
+            <option value="Alphabetical"/>
+            <option value="Ascending Price"/>
+            <option value="Decending Price"/>
+            <option value="Rating"/>
         </datalist>
         <button class="no-default filter-button" type="submit">
             Submit
