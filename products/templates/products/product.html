@@ -4,6 +4,7 @@
 {% block content%}
     <div class="main-content">
         <hr>
+        <p class="name center-text logo"><b>{{ products.name }}</b></p>
         <div class="side-content">
             <div class="product center-text">
                 <img src="/media/{{ products.image }}">
@@ -11,7 +12,6 @@
         </div>
         <div class="side-content">
             <div class="product">
-                <p class="name center-text">{{ products.name }}</p>
                 <p class="detail">{{ products.description }}</p>
                 <div class="price-container">
                     <p class="price center-text">£ {{ products.price }}</p>
