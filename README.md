@@ -21,8 +21,9 @@ Within this section, I will discuss what different users would require from my w
 + Users would return to the site if you are able to provide competative prices and also be able to present the website in the style that they would like to see.
 
 ### Users with Accounts and Regular 
-+ Some users would like to easily login and out of account, whilst some people would like a simple and straightforward way of saying all in creating an account.
++ Some users would like to easily login and out of account, whilst some people would like a simple and straightforward way of creating an account.
 + Some users would like the ability to recieve emails about discounts or an ability to get discounts from purchases.
++ Some users would like to alter how the website would look, and make sure that the website can keep the options that the user selects and be able to always return to the site with the selected settings. This could be done by saving it to an account as a sub section about settings and be present on the website by using the information inside of the data fields using JS.
 
 ### Users with needs
 Users that have needs and requirements would need the ability to control the web site, this could be done by controlling the style, fonts or sizes of elements within the website.  I will think of a way of creating a footer on the website which can be used by the user to controll a series of aspects on the website.  These aspects could include alterations to the font, alterations to the images and the ability to turn off background images or colors.
@@ -47,4 +48,19 @@ On the home page I want to began to create the theme that will sit with the site
 
 ## Wireframe
 
+This is the wire frame for my website.  This is the first plan that I have created for my website, I have presented a wire frame that contains the drawn plans of my website.  When I create a website I oftenly draw it out on paper as drawing it is easier then created a wire frame.  I want to use this wire frame as a point of reference as this is the first rough copy of what I want my website to look like.  As my web site is developed, it will begin to differ from the wireframe and will be changed in ways that will suit the personality of the website better.  Their will be reasons behind changing some features of the wireframe as I begin to flesh out the website.  I don't think the websites should be created with out an ability to differ from the plans as time goes on.  The wireframe is good for creating the idea and foundation of what the site stands for, but is not how the website should look at the final version.
+
+Within the website, there was a few things that I had changed which are different to the wireframe.  These changes came about when I began development.  I struggled to resonate with the idea of the site at the beginning.  I wanted to make sure that the navigation was created with an ideal perspective.  I did this because within a website where you can look for products the navigation is key.  Once I've got the navigation created to how I feel it should look then I began to create the contents with the site.  This means that some of the contents will have differed from the wireframe as once some of the features are changed so will other features.
+
+When I compare the wireframe to the website, I will keep this in mind as the image of how I want the website to look has strayed far from of wireframe of the now.  Although the wireframe has given me a very good plan to base the website of.  Within the products page and the individual products page I have created the HTML close to the wireframe design.
+
+I feel like the wireframe has really strengthened the web site's layout and functionally.  Although the website has differed from the wireframe, the websites design has been developed from the wireframes plan.
+
+This is the URL for were the wireframe can be found.  The plan is rough but contains the website initial idea.
 https://miro.com/app/board/o9J_l2nBjuQ=/
+
+# During Production of the Website
+
+As I've gone through developing the website, I have noticed that there are quite a few features that I was torn between.  Although I had difficulty thinking about how I want the website to look.  I feel as though the final design is quite true to how I want the website to work and look.  I really like how it has been going and I feel as though I have presented the true idea of Retro Exchange.
+
+I feel as though my website is very user friendly, and does not over complicates what I feel a user would like to see.
