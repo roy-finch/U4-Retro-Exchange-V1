@@ -138,7 +138,7 @@
                     border-top-left-radius: 20px;
                     border-top-right-radius: 20px;
                     position: fixed;
-                    width: 100px;
+                    width: fit-content;
                     height: fit-content;
                     padding-bottom: 10px;
                     right: 0px;
@@ -206,7 +206,7 @@
                     border-radius: 20px;
                     border-bottom-right-radius: 20px;
                     width: 250px;
-                    height: 300px;
+                    height: auto;
                     margin: 10px;
                     display: inline-block;
                     text-align: center;
@@ -215,7 +215,6 @@
                 .product-container button {
                     border-radius: 20px;
                     font-size: 20px;
-                    border: none;
                     outline: none;
                     padding: 20px;
                     width: 95%;
@@ -249,7 +248,7 @@
                 .product button {
                     border-radius: 20px;
                     font-size: 20px;
-                    border: none;
+                    margin: 5px 0px 5px 0px;
                     outline: none;
                     padding: 20px;
                     width: 95%;
@@ -426,7 +425,7 @@
                     <img class="m-icon" src="/media/basket.png"/>
                 <br> 
                 {% if grand_total %}
-                    ${{ grandtotal|floatformat:2 }}
+                    £{{ grand_total|floatformat:2 }}
                 {% else %}
                     £0.00
                 {% endif %}

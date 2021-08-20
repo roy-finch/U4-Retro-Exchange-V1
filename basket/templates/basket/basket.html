@@ -9,15 +9,18 @@
             <hr>
         </div>
         <div class="center-text">
-            {% if basket %}
-                {% for product in basket %}
+            {% if basket_contents %}
+                {% for item_id in basket_contents %}
                         <div class="product-container">
-                            <a href="{{ product.pk }}">
-                                <img src="/media/{{ product.image }}">
-                                <p class="name">{{ product.name }}</p>
-                                <p class="price">£ {{ product.price }}</p>
-                            </a>
-                            <button class="black-white">Add to Basket</button>
+                            <img src="/media/{{ item_id.product.image }}">
+                            <p class="name">{{ item_id.product.name }}</p>
+                            <p class="price">Price: £ {{ item_id.product.price }}</p>
+                            <p class="price">Quantity: {{ item_id.quantity }}</p>
+                            <p class="price">Shipping Fee: £{{ item_id.shipping }}</p>
+                            <p class="price">Total Cost: £{{ item_id.total_cost }}</p>
+                            <form method="GET" action="">
+                                <button name="remove" value="{{ item_id.product.pk }}" type="submit" class="white-black">Remove</button>
+                            </form>
                         </div>
                     {% endfor %}
             {% else %}
@@ -31,7 +34,7 @@
                 </a>
             </div>
             <div class="side-content">
-                {% if basket_items %}
+                {% if basket_contents %}
                     <button class="black-white themed-button">Checkout</button>
                 {% endif %}
             </div>

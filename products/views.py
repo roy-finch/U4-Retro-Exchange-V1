@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product
-from basket.views import add_product
+from basket.views import alter_product
 
 # Create your views here.
 consoles = ["No Specific Console", "Nintendo 64", "NES", "SNES"]
@@ -21,7 +21,7 @@ def all_products(request):
     sortkey = None
 
     if request.GET:
-        if request.GET["search"] is None or request.GET["search"] == "":
+        if "search" in request.GET:
             query = [request.GET["c"], request.GET["q"], request.GET["f"]]
             if query[2] != "":
                 if query[2] == "A-Z":
@@ -82,17 +82,23 @@ def all_products(request):
 def product_detail(request, product_pk):
     """ This will display the page of the item that has been selected."""
 
-    products = get_object_or_404(Product, pk=int(product_pk))
+    products = get_object_or_404(Product, pk=product_pk)
     add_msg = ""
 
+    basket = request.session.get("basket", {})
+
     if request.GET:
-        if request.GET["add"]:
-            add_product(request, product_pk)
-            add_msg = "You have successfully added this product to your basket."
+        if "add" in request.GET:
+            alter_product(request, True, product_pk)
+            add_msg = "This product has been added to your basket."
+        elif "remove" in request.GET:
+            alter_product(request, False, product_pk)
+            add_msg = "This product has been removed from your basket."
 
     context = {
         "products": products,
         "add_msg": add_msg,
+        "basket_contents": basket
     }
 
     return render(request, "products/product.html", context)

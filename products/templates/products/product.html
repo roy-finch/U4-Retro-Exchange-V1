@@ -17,8 +17,9 @@
                     <p class="price center-text">£ {{ products.price }}</p>
                     <form method="GET" action="">
                         <button name="add" value="{{ products.pk }}" type="submit" class="black-white">Add to Basket</button>
+                        <button name="remove" value="{{ products.pk }}" type="submit" class="white-black">Remove</button>
                     </form>
-                    <p>{{ add_msg }}</p>
+                    <p class="center-text">{{ add_msg }}</p>
                 </div>
             </div>
         </div>

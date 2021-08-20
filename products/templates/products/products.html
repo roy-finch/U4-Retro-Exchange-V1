@@ -18,7 +18,9 @@
                             <p class="name">{{ product.name }}</p>
                             <p class="price">£ {{ product.price }}</p>
                         </a>
-                        <button class="black-white">Add to Basket</button>
+                        <form method="GET" action="{{ product.pk }}">
+                            <button name="add" value="{{ product.pk }}" type="submit" class="black-white">Add to Basket</button>
+                        </form>
                     </div>
                 {% endfor %}
             </div>
