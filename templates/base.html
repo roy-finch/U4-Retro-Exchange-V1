@@ -218,14 +218,22 @@
                     border: none;
                     outline: none;
                     padding: 20px;
-                    width: 100%;
-                    vertical-align: bottom;
+                    width: 95%;
+                }
+                .themed-button {
+                    border-radius: 20px;
+                    font-size: 20px;
+                    border: none;
+                    outline: none;
+                    padding: 20px;
+                    width: 95%;
                 }
                 .product-container img {
                     width: 200px;
                     height: 110px;
                 }
                 .product {
+                    text-align: center;
                     padding: 40px;
                     height: 400px;
                 }
@@ -239,7 +247,6 @@
                     font-size: 30px;
                 }
                 .product button {
-                    margin: 5px 20px 20px 20px;
                     border-radius: 20px;
                     font-size: 20px;
                     border: none;
@@ -336,6 +343,11 @@
                     background-color: black;
                     color: white;
                 }
+                .white-black {
+                    background-color: white;
+                    color: black;
+                    border: 1px solid black;
+                }
                 .start-shopping {
                     width: 100%;
                     text-align: center;
@@ -409,7 +421,7 @@
         {% endblock %}
 
         <div class="basket">
-            <a href="">
+            <a href="{% url 'view_basket' %}">
                 <b>
                     <img class="m-icon" src="/media/basket.png"/>
                 <br> 

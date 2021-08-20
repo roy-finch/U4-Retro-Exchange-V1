@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+    <div class="main-content">
+        <div class="sub-content">
+            <h2 class="center-text logo"><b>BASKET</b></h2>
+            <p class="center-text">These are the items that you have added to your basket.</p>
+            <hr>
+        </div>
+        <div class="center-text">
+            {% if basket_items %}
+            {% else %}
+                <p>Sorry you have no items within your basket, use the link below to look for an item on the site to buy.</p>
+            {% endif %}
+        </div>
+        <div class="center-text">
+            <div class="side-content">
+                <a href="{% url 'home' %}">
+                    <button class="white-black themed-button">Keep Shopping</button>
+                </a>
+            </div>
+            <div class="side-content">
+                {% if basket_items %}
+                    <button class="black-white themed-button">Checkout</button>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
