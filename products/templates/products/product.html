@@ -15,7 +15,10 @@
                 <p class="detail">{{ products.description }}</p>
                 <div class="price-container">
                     <p class="price center-text">£ {{ products.price }}</p>
-                    <button class="black-white">Add to Basket</button>
+                    <form method="GET" action="">
+                        <button name="add" value="{{ products.pk }}" type="submit" class="black-white">Add to Basket</button>
+                    </form>
+                    <p>{{ add_msg }}</p>
                 </div>
             </div>
         </div>

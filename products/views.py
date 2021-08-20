@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product
+from basket.views import add_product
 
 # Create your views here.
 consoles = ["No Specific Console", "Nintendo 64", "NES", "SNES"]
@@ -82,9 +83,16 @@ def product_detail(request, product_pk):
     """ This will display the page of the item that has been selected."""
 
     products = get_object_or_404(Product, pk=int(product_pk))
+    add_msg = ""
+
+    if request.GET:
+        if request.GET["add"]:
+            add_product(request, product_pk)
+            add_msg = "You have successfully added this product to your basket."
 
     context = {
         "products": products,
+        "add_msg": add_msg,
     }
 
     return render(request, "products/product.html", context)

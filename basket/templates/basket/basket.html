@@ -9,7 +9,17 @@
             <hr>
         </div>
         <div class="center-text">
-            {% if basket_items %}
+            {% if basket %}
+                {% for product in basket %}
+                        <div class="product-container">
+                            <a href="{{ product.pk }}">
+                                <img src="/media/{{ product.image }}">
+                                <p class="name">{{ product.name }}</p>
+                                <p class="price">£ {{ product.price }}</p>
+                            </a>
+                            <button class="black-white">Add to Basket</button>
+                        </div>
+                    {% endfor %}
             {% else %}
                 <p>Sorry you have no items within your basket, use the link below to look for an item on the site to buy.</p>
             {% endif %}
