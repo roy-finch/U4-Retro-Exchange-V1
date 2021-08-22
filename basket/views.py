@@ -1,14 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def view_basket(request):
     """ This returns the index page """
 
-    if "add" in request.GET:
-        alter_product(request, True, request.GET["add"])
-    elif "remove" in request.GET:
-        alter_product(
-            request, False, request.GET["remove"])
+    basket = request.session.get("basket", {})
+
+    if "add" in request.POST:
+        alter_product(request, True, request.POST["add"])
+    elif "remove" in request.POST:
+        if request.POST["remove"] in basket:
+            alter_product(
+                request, False, request.POST["remove"])
+        else:
+            redirect("basket/")
 
     return render(request, "basket/basket.html")
 

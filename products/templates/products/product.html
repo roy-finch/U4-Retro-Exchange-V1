@@ -15,11 +15,15 @@
                 <p class="detail">{{ products.description }}</p>
                 <div class="price-container">
                     <p class="price center-text">£ {{ products.price }}</p>
-                    <form method="GET" action="">
+                    <form method="POST" action="">
+                        {% csrf_token %}
                         <button name="add" value="{{ products.pk }}" type="submit" class="black-white">Add to Basket</button>
+                    </form>
+                    <form method="POST" action="">
+                        {% csrf_token %}
                         <button name="remove" value="{{ products.pk }}" type="submit" class="white-black">Remove</button>
                     </form>
-                    <p class="center-text">{{ add_msg }}</p>
+                    <p id="basket_alt" class="center-text">{{ add_msg }}</p>
                 </div>
             </div>
         </div>

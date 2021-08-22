@@ -12,13 +12,16 @@
             {% if basket_contents %}
                 {% for item_id in basket_contents %}
                         <div class="product-container">
-                            <img src="/media/{{ item_id.product.image }}">
-                            <p class="name">{{ item_id.product.name }}</p>
-                            <p class="price">Price: £ {{ item_id.product.price }}</p>
-                            <p class="price">Quantity: {{ item_id.quantity }}</p>
-                            <p class="price">Shipping Fee: £{{ item_id.shipping }}</p>
-                            <p class="price">Total Cost: £{{ item_id.total_cost }}</p>
-                            <form method="GET" action="">
+                            <a href="/products/{{ item_id.product.pk }}">
+                                <img src="/media/{{ item_id.product.image }}">
+                                <p class="name">{{ item_id.product.name }}</p>
+                                <p class="price">Price: £ {{ item_id.product.price }}</p>
+                                <p class="price">Quantity: {{ item_id.quantity }}</p>
+                                <p class="price">Shipping Fee: £{{ item_id.shipping }}</p>
+                                <p class="price">Total Cost: £{{ item_id.total_cost }}</p>
+                            </a>
+                            <form method="POST" action="">
+                                {% csrf_token %}
                                 <button name="remove" value="{{ item_id.product.pk }}" type="submit" class="white-black">Remove</button>
                             </form>
                         </div>

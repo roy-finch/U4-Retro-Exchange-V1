@@ -14,11 +14,13 @@ def all_products(request):
 
     products = Product.objects.all()
 
+    basket = request.session.get("basket", {})
+
     search = None
     search_num = None
     ids = [0, 0]
-    query = None
     sortkey = None
+    query = ["", "", ""]
 
     if request.GET:
         if "search" in request.GET:
@@ -40,7 +42,6 @@ def all_products(request):
                     products = products.order_by(sortkey)
             if not query:
                 return redirect("home")
-
             if query[0] in consoles:
                 ids[0] = consoles.index(query[0])
             else:
@@ -68,13 +69,20 @@ def all_products(request):
             queries = Q(
                 name__icontains=search) | Q(description__icontains=search)
             products = products.filter(queries)
-            search_num = len(products)
+
+    search_num = len(products)
 
     context = {
         "products": products,
         "search_q": search,
         "return_num": search_num,
+        "basket_contents": basket
     }
+
+    if request.POST:
+        if "add" in request.POST:
+            check_request(request, request.POST["add"], basket)
+            return redirect("/products/#id"+request.POST["add"])
 
     return render(request, "products/products.html", context)
 
@@ -87,18 +95,28 @@ def product_detail(request, product_pk):
 
     basket = request.session.get("basket", {})
 
-    if request.GET:
-        if "add" in request.GET:
-            alter_product(request, True, product_pk)
-            add_msg = "This product has been added to your basket."
-        elif "remove" in request.GET:
-            alter_product(request, False, product_pk)
-            add_msg = "This product has been removed from your basket."
-
     context = {
         "products": products,
         "add_msg": add_msg,
         "basket_contents": basket
     }
 
+    if request.POST:
+        add_msg = check_request(request, product_pk, basket)
+        return redirect("/products/"+product_pk)
+
     return render(request, "products/product.html", context)
+
+
+def check_request(request, product_pk, basket):
+    if request.POST:
+        if "add" in request.POST:
+            alter_product(request, True, product_pk)
+            return "This product has been added to your basket."
+        elif "remove" in request.POST:
+            if request.POST["remove"] in basket:
+                alter_product(request, False, product_pk)
+                return "This product has been removed from your basket."
+            else:
+                redirect("products/product_pk")
+                return "This item is not in your basket."

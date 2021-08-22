@@ -12,13 +12,14 @@
             {% endif %}
             <div class="outer-pro-container">
                 {% for product in products %}
-                    <div class="product-container">
+                    <div id="id{{ product.pk }}" class="product-container">
                         <a href="{{ product.pk }}">
                             <img src="/media/{{ product.image }}">
                             <p class="name">{{ product.name }}</p>
                             <p class="price">£ {{ product.price }}</p>
                         </a>
-                        <form method="GET" action="{{ product.pk }}">
+                        <form method="POST" action="">
+                            {% csrf_token %}
                             <button name="add" value="{{ product.pk }}" type="submit" class="black-white">Add to Basket</button>
                         </form>
                     </div>
