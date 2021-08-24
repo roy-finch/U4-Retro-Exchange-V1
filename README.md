@@ -32,6 +32,10 @@ I think that the websites me navigation sure the accessible no matter where the 
 
 Some users would like to have easy access to their accounts and their personal information, whilst others would like to easily shop within my website and purchase without alot of hassil.  Some users would like to see offers for clearances of items that have been reduced.  I would like to create a home page that presents to the user a few list of products, like suggestions depending on accounts activity, what's new and possibly items that are reduced.
 
+Some users would like to be able to see whether an item has been added to the basket and would need a notification or indication of if the items in the basket. Some users would need to be shown that that action has been completed.
+
+Allow the users to be able to see and control the quantity of a product, although that in this instance I would only allow for the user to add one item at a time as this is about buying consoles and games which are retro and wouldn't necessarily be bought in bulk.
+
 
 
 The purpose of my site is to provide a service were a user or viewer can come to my site to purchase a form of goods.  Within this module the site must allow for user to be able to make an account, to add items to their basket's and to be able to search for and buy products.  The products I am thinking of using within the site are games as I am interested in games and old fashioned consoles.  I think that our website needs to be somewhat personal to the creator as they can connect with the idea and website closer and be able to truly build the image of the website and connect with what they want to see on the site.  As I am thinking of creating a website that allows for users to purchase games and consoles I have began to think about the name of the website.

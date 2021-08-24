@@ -23,7 +23,10 @@ def all_products(request):
     query = ["", "", ""]
 
     if request.GET:
-        if "search" in request.GET:
+        if "search" not in request.GET and (
+                "c" in request.GET) and (
+                    "q" in request.GET) and (
+                        "f" in request.GET):
             query = [request.GET["c"], request.GET["q"], request.GET["f"]]
             if query[2] != "":
                 if query[2] == "A-Z":
@@ -52,7 +55,7 @@ def all_products(request):
             else:
                 ids[1] = 0
                 query[1] = "All"
-
+            print(query)
             if query[0] == "No Specific Console" and query[1] != "All":
                 queries = Q(category=ids[1])
             elif query[1] == "All" and query[0] != "No Specific Console":
@@ -60,7 +63,7 @@ def all_products(request):
             else:
                 queries = Q(console=ids[0]) & Q(category=ids[1])
 
-            if (query[0] != "No Specific Console"):
+            if (query[0] != "No Specific Console" or query[1] != "All"):
                 products = products.filter(queries)
             else:
                 products = products
