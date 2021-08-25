@@ -55,7 +55,6 @@ def all_products(request):
             else:
                 ids[1] = 0
                 query[1] = "All"
-            print(query)
             if query[0] == "No Specific Console" and query[1] != "All":
                 queries = Q(category=ids[1])
             elif query[1] == "All" and query[0] != "No Specific Console":
@@ -94,18 +93,16 @@ def product_detail(request, product_pk):
     """ This will display the page of the item that has been selected."""
 
     products = get_object_or_404(Product, pk=product_pk)
-    add_msg = ""
 
     basket = request.session.get("basket", {})
 
     context = {
         "products": products,
-        "add_msg": add_msg,
         "basket_contents": basket
     }
 
     if request.POST:
-        add_msg = check_request(request, product_pk, basket)
+        check_request(request, product_pk, basket)
         return redirect("/products/"+product_pk)
 
     return render(request, "products/product.html", context)
@@ -115,11 +112,8 @@ def check_request(request, product_pk, basket):
     if request.POST:
         if "add" in request.POST:
             alter_product(request, True, product_pk)
-            return "This product has been added to your basket."
         elif "remove" in request.POST:
             if request.POST["remove"] in basket:
                 alter_product(request, False, product_pk)
-                return "This product has been removed from your basket."
             else:
                 redirect("products/product_pk")
-                return "This item is not in your basket."

@@ -1,4 +1,24 @@
 <div class="message-container">
     <p class="logo success-color">Success</p>
     <p>{{ message }}</p>
+    <hr>
+    <p class="center-text">Your Basket</p>
+    <div class="scroll-container">
+        {% if grand_total %}
+            {% for item in basket_contents %}
+                <div>
+                    <div class="center-text">
+                        <img class="m-icon" src="">
+                    </div>
+                    <div class="center-text">
+                        <p>{{ item.name }}</p>
+                        <p>{{ item.quantity }}</p>
+                        <p>{{ item.price }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+    <p>Total (Exc. Shipping) {{ total|floatformat:2 }}</p>
 </div>
