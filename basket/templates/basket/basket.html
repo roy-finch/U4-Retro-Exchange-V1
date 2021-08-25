@@ -11,21 +11,21 @@
         <div class="center-text">
             {% if basket_contents %}
                 {% for item in basket_contents %}
-                        <div class="product-container">
-                            <a href="/products/{{ item.pk }}">
-                                <img src="/media/{{ item.image }}">
-                                <p class="name">{{ item.name }}</p>
-                                <p class="price">Price: £ {{ item.price }}</p>
-                                <p class="price">Quantity: {{ item.quantity }}</p>
-                                <p class="price">Shipping Fee: £{{ item.shipping }}</p>
-                                <p class="price">Total Cost: £{{ item.total_cost }}</p>
-                            </a>
-                            <form method="POST" action="">
-                                {% csrf_token %}
-                                <button name="remove" value="{{ item.pk }}" type="submit" class="white-black">Remove</button>
-                            </form>
-                        </div>
-                    {% endfor %}
+                    <div class="product-container">
+                        <a href="/products/{{ item.pk }}">
+                            <img src="/media/{{ item.image }}">
+                            <p class="name">{{ item.name }}</p>
+                            <p class="price">Price: £ {{ item.price }}</p>
+                            <p class="price">Quantity: {{ item.quantity }}</p>
+                            <p class="price">Shipping Fee: £{{ item.shipping }}</p>
+                            <p class="price">Total Cost: £{{ item.total_cost }}</p>
+                        </a>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <button name="remove" value="{{ item.pk }}" type="submit" class="white-black">Remove</button>
+                        </form>
+                    </div>
+                {% endfor %}
             {% else %}
                 <p>Sorry you have no items within your basket, use the link below to look for an item on the site to buy.</p>
             {% endif %}

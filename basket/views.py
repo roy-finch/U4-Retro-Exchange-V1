@@ -30,18 +30,21 @@ def alter_product(request, add, product_pk):
             basket[str(len(basket))] = {
                 "pk": product_pk,
                 "quantity": 1,
-                "product": product
+                "name": product.name,
+                "image": str(product.image),
+                "price": float(product.price),
+                "description": product.description,
             }
     else:
         messages.success(request, f'Removed { product.name }')
         if find_product(basket, product_pk) is not False and basket[
                 find_product(basket, product_pk)]["quantity"] > 1:
             basket[find_product(basket, product_pk)]["quantity"] -= 1
-        else:
-            basket.pop(find_product(basket, product_pk))
+        elif find_product(basket, product_pk) is not False and basket[
+                find_product(basket, product_pk)]["quantity"] == 1:
+            del basket[find_product(basket, product_pk)]
 
     request.session["basket"] = basket
-    print(basket)
     return basket
 
 
