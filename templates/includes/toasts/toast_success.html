@@ -13,12 +13,12 @@
                     <div class="center-text">
                         <p>{{ item.name }}</p>
                         <p>Quantity: {{ item.quantity }}</p>
-                        <p>Price: {{ item.price }}</p>
+                        <p>Price: £{{ item.price }}</p>
                     </div>
                 </div>
             {% endfor %}
         {% endif %}
     </div>
     <hr>
-    <p>Total (Exc. Shipping) {{ total|floatformat:2 }}</p>
+    <p>Total (Exc. Shipping): £{{ total|floatformat:2 }}</p>
 </div>

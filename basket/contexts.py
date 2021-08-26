@@ -34,6 +34,4 @@ def basket_contents(request):
         "product_count": product_count,
     }
 
-    print(basket)
-
     return context
