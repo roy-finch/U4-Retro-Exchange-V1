@@ -11,6 +11,7 @@
         <div class="center-text">
             {% if basket_contents %}
                 {% for item in basket_contents %}
+                    {% with basket_contents.item as ind %}
                     <div class="product-container">
                         <a href="/products/{{ item.pk }}">
                             <img src="/media/{{ item.image }}">
@@ -25,6 +26,7 @@
                             <button name="remove" value="{{ item.pk }}" type="submit" class="white-black">Remove</button>
                         </form>
                     </div>
+                    {% endwith %}
                 {% endfor %}
             {% else %}
                 <p>Sorry you have no items within your basket, use the link below to look for an item on the site to buy.</p>

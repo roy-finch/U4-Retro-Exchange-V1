@@ -14,7 +14,7 @@ def all_products(request):
 
     products = Product.objects.all()
 
-    basket = request.session.get("basket", {})
+    basket = request.session.get("basket", [])
 
     search = None
     search_num = None
@@ -94,7 +94,7 @@ def product_detail(request, product_pk):
 
     products = get_object_or_404(Product, pk=product_pk)
 
-    basket = request.session.get("basket", {})
+    basket = request.session.get("basket", [])
 
     context = {
         "products": products,
@@ -103,7 +103,6 @@ def product_detail(request, product_pk):
 
     if request.POST:
         check_request(request, product_pk, basket)
-        return redirect("/products/"+product_pk)
 
     return render(request, "products/product.html", context)
 
@@ -112,7 +111,7 @@ def check_request(request, product_pk, basket):
     if request.POST:
         if "add" in request.POST:
             alter_product(request, True, product_pk)
-        elif "remove" in request.POST:
+        if "remove" in request.POST:
             if request.POST["remove"] in basket:
                 alter_product(request, False, product_pk)
             else:

@@ -19,7 +19,7 @@ def view_basket(request):
 
 def alter_product(request, add, product_pk):
 
-    basket = request.session.get("basket", {})
+    basket = request.session.get("basket", [])
     product = get_object_or_404(Product, pk=product_pk)
 
     if add:
@@ -27,14 +27,14 @@ def alter_product(request, add, product_pk):
         if find_product(basket, product_pk) is not False:
             basket[find_product(basket, product_pk)]["quantity"] += 1
         else:
-            basket[str(len(basket))] = {
+            basket.append({
                 "pk": product_pk,
                 "quantity": 1,
                 "name": product.name,
                 "image": str(product.image),
                 "price": float(product.price),
                 "description": product.description,
-            }
+            })
     else:
         messages.success(request, f'Removed { product.name }')
         if find_product(basket, product_pk) is not False and basket[
@@ -50,6 +50,6 @@ def alter_product(request, add, product_pk):
 
 def find_product(dic, pk):
     for i in range(0, len(dic)):
-        if dic[str(i)]["pk"] == pk:
-            return str(i)
+        if dic[i]["pk"] == pk:
+            return i
     return False
