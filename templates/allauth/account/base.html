@@ -1,40 +1,507 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{% block head_title %}{% endblock %}</title>
-    {% block extra_head %}
-    {% endblock %}
-  </head>
-  <body>
-    {% block body %}
+<html lang="en">
+    <head>
 
-    {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+        <link rel="shortcut icon" href="/media/r_e_logo.png">
 
-    <div>
-      <strong>Menu:</strong>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        {% block meta %}
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+
+        {% block corecss %}
+            <style>
+                @media only screen and (max-width: 1472px) {
+                    .center-block div {
+                        width: 95%;
+                        height: 100%;
+                    }
+                }
+                @media only screen and (min-width: 1472px) {
+                    .center-block div {
+                        display: inline-block;
+                        width: 45%;
+                    }
+                }
+                @media only screen and (max-width: 1150px) {
+                    .filter-form {
+                        text-align: center;
+                        margin: auto;
+                        width: 525px;
+                    }
+                    .filter {
+                        width: 500px;
+                        margin: 5px 0px 5px 0px;
+                    }
+                    .main-content {
+                        padding: 300px 0px 0px 0px;
+                    }
+                }
+                @media only screen and (min-width: 1150px) {
+                    .filter-form {
+                        text-align: none;
+                        width: fit-content;
+                        margin: auto;
+                    }
+                    .filter {
+                        width: 200px;
+                        margin: 5px 0px 5px 0px;
+                    }
+                    .main-content {
+                        padding: 150px 0px 0px 0px;
+                    }
+                }
+                html {
+                    height: 100%;
+                }
+                body {
+                    background: url('/media/background.jpg') no-repeat center center fixed;
+                    background-size: cover;
+                    font-family: "Segoe UI", sans-serif;
+                    overflow-x: hidden;
+                }
+                a {
+                    padding: 5px;
+                    color: black;
+                    text-decoration: none;
+                }
+                .center-text input {
+                    padding: 10px;
+                    border-radius: 20px;
+                    outline: none;
+                    border: 1px solid grey;
+                    margin-left: 30px;
+                    width: 50vw;
+                }
+                .center-text button {
+                    border-radius: 20px;
+                    font-size: 20px;
+                    outline: none;
+                    padding: 20px;
+                    width: 95%;
+                    margin: 20px 0px 20px 0px;
+                }
+                .s-icon {
+                    margin: auto;
+                    height: 1.25rem;
+                    width: 1.25rem;
+                }
+                .m-icon {
+                    margin: auto;
+                    height: 2.5rem;
+                    width: 5rem;
+                    margin: 5px 10px 5px 10px;
+                }
+                .no-default {
+                    text-decoration: hidden;
+                    outline: none;
+                    border: none;
+                    color: black;
+                    background-color: white;
+                }
+                .circle-container {
+                    padding: 5px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                }
+                .m-t-5 {
+                    margin-top: 5px;
+                }
+                .m-l-20 {
+                    margin-left: 20px;
+                }
+                .main-content {
+                    background-color: white;
+                    width: 90%;
+                    margin: auto;
+                    height: fit-content;
+                }
+                .sub-content {
+                    display: inline-block;
+                    width: 100%;
+                    margin: auto;
+                    margin-bottom: 10px;
+                }
+                .top-bar {
+                    position: fixed;
+                    top: -2px;
+                    left: 0px;
+                    display: inline;
+                    width: 100%;
+                    z-index: 1;
+                    background-color: white;
+                    height: 50px;
+                }
+                .nav-bar {
+                    position: fixed;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    margin-top: 45px;
+                    height: 80px;
+                }
+                .top-bar > span, .search-con, .basket{
+                    display: inline-block;
+                }
+                .basket {
+                    background-color: white;
+                    border: 1px solid grey;
+                    border-bottom: none;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    position: fixed;
+                    width: 200px;
+                    height: fit-content;
+                    padding-bottom: 10px;
+                    right: 55px;
+                    bottom: -2px;
+                    margin: 8px 10px 0px 0px;
+                    padding-top: 15px;
+                    text-align: center;
+                    font-size: 20px;
+                    z-index: 6;
+                }
+                .basket a {
+                    padding: 2px;
+                }
+                .message-container {
+                    border: 1px solid grey;
+                    padding: 10px;
+                    background-color: white;
+                    width: 300px;
+                    margin-bottom: 115px;
+                    margin-right: 5px;
+                    position: fixed;
+                    bottom: -2px;
+                    right: 0px;
+                    font-size: 16px;
+                    text-align: center;
+                }
+                .dropdown {
+                    padding: 8px;
+                    border-radius: 20px;
+                }
+                .dropdown-container {
+                    width: 100%;
+                    display: none;
+                    margin-top: 8px;
+                    text-align: center;
+                }
+                .dropdown-container a {
+                    border-radius: 20px;
+                    display: block;
+                    width: 80%;
+                    margin-left: 6%;
+                    margin-bottom: 4px;
+                    border: 1px solid grey;
+                }
+                .dropdown:hover .dropdown-container {
+                    display: block;
+                }
+                .account {
+                    top: 0px;
+                    right: 0px;
+                    border: 1px solid grey;
+                    margin-top: 6px;
+                    margin-right: 6px;
+                    position: absolute;
+                }
+                .sub-account {
+                    right: 0px;
+                    position: absolute;
+                }
+                .consoles {
+                    top: 0px;
+                    left: 0px;
+                    margin-left: 6px;
+                    position: absolute;
+                }
+                .sub-consoles {
+                    right: 0px;
+                    position: absolute;
+                }
+                .outer-pro-container{
+                    width: 90%;
+                    margin: 0px auto 0px auto;
+                    text-align: center;
+                }
+                .product-container {
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                    width: 250px;
+                    height: auto;
+                    margin: 10px;
+                    display: inline-block;
+                    text-align: center;
+                    padding: 20px;
+                }
+                .product-container button {
+                    border-radius: 20px;
+                    font-size: 20px;
+                    outline: none;
+                    padding: 20px;
+                    width: 95%;
+                }
+                .themed-button {
+                    border-radius: 20px;
+                    font-size: 20px;
+                    border: none;
+                    outline: none;
+                    padding: 20px;
+                    width: 95%;
+                }
+                .product-container img {
+                    width: 200px;
+                    height: 110px;
+                }
+                .product {
+                    text-align: center;
+                    padding: 40px;
+                    height: 400px;
+                }
+                .product img {
+                    width: 450px;
+                    height: 300px;
+                    margin: 30px;
+                }
+                .product .price {
+                    margin-top: 5px;
+                    font-size: 30px;
+                }
+                .product button {
+                    border-radius: 20px;
+                    font-size: 20px;
+                    margin: 5px 0px 5px 0px;
+                    outline: none;
+                    padding: 20px;
+                    width: 95%;
+                    vertical-align: bottom;
+                }
+                .side-content {
+                    margin: 20px 20px 50px 20px;
+                    display: inline-block;
+                    width: 45%;
+                    height: fit-content;
+                }
+                .detail {
+                    height: 100px;
+                    margin: 0px 0px 60px 0px;
+                }
+                .name {
+                    height: 50px;
+                }
+                .price {
+                    font-size: 18px;
+                }
+                .search-container {
+                    position: fixed;
+                    top: 0px;
+                    right: 175px;
+                    margin-top: 6px;
+                    width: fit-content;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    padding: 2px 5px 2px 10px;
+                    background-color: white;
+                }
+                .search-bar {
+                    top: 0px;
+                    left: 0px;
+                    padding: 8px;
+                    width: calc(100%-130px);
+                }
+                .search-button {
+                    margin-left: 20px;
+                    top: 0px;
+                    padding: 4px;
+                    width: 125px;
+                    text-align: center;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                }
+                .logo {
+                    margin: 2px;
+                    font-style: italic;
+                    letter-spacing: -2px;
+                    font-size: 30px;
+                }
+                .logo-img {
+                    height: 1.3rem;
+                    width: 3rem;
+                }
+                .filter-form {
+                    background-color: white;
+                    padding: 15px;
+                    border: 1px solid grey;
+                    border-top: none;
+                    border-bottom-left-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                }
+                .filter {
+                    padding: 15px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                }
+                .filter option {
+                    padding: 20px;
+                    margin: 20px;
+                    border: none;
+                }
+                .filter-button {
+                    font-size: 16px;
+                    padding: 10px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                }
+                .inline {
+                    display: inline-block;
+                    width: 45%;
+                }
+                .center-text {
+                    padding: 0px 20px 0px 20px;
+                    text-align: center;
+                }
+                .black-white {
+                    background-color: black;
+                    color: white;
+                }
+                .white-black {
+                    background-color: white;
+                    color: black;
+                    border: 1px solid black;
+                }
+                .start-shopping {
+                    width: 100%;
+                    text-align: center;
+                }
+                .start-shopping button {
+                    width: 90%;
+                    height: fit-content;
+                    margin: auto;
+                    margin-bottom: 20px;
+                    border-radius: 20px;
+                    font-size: 30px;
+                }
+                .center-block {
+                    text-align: center;
+                    width: 95%;
+                    margin: auto;
+                    height: fit-content;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    margin-bottom: 20px;
+                }
+                .center-block div {
+                    height: 100%;
+                }
+                .success-color {
+                    color: green;
+                }
+                .error-color {
+                    color: red;
+                }
+                .warning-color {
+                    color: orange;
+                }
+                .scroll-container {
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    height: 220px;
+                }
+            </style>
+        {% endblock %}
+
+        {% block corejs %}
+        {% endblock %}
+
+        <title>R-Exchange {% block extend_title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="logo-container m-l-20 m-t-5">
+                <a href="{% url 'home' %}">
+                    <span class="logo">
+                        <img class="logo-img" src="/media/r_e_logo.png"/>
+                        <b>RETRO EXCHANGE</b>
+                    </span>
+                </a>
+            </div>
+            <form class="search-container" action="{% url 'products' %}">
+                <input class="search-bar no-default" type="text" name="search" placeholder="Search for a product"/>
+                <button class="search-button no-default" type="submit">
+                    <span>Search</span>
+                </button>
+            </form>
+            <div class="dropdown account">
+                    {% if request.user.is_authenticated %}
+                        <a class="no-default">My Accounts</a>
+                    {% else %}
+                        <a class="no-default">Create an Account</a>
+                    {% endif %}
+                
+                <div class="dropdown-container sub-account">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a class="no-default m-t-5" href="#">Edit Products</a>
+                        {% endif %}
+                        <a class="no-default m-t-5" href="#">My Account</a>
+                        <a class="no-default" href="{% url 'account_logout' %}">Signout</a>
+                    {% else %}
+                        <a class="no-default m-t-5" href="{% url 'account_signup' %}">Signup</a>
+                        <a class="no-default" href="{% url 'account_login' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/main-nav.html' %}
+
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_error.html' %}
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        {% else %}
+                            {% include 'includes/toasts/toast_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
         {% endif %}
-      </ul>
-    </div>
-    {% block content %}
-    {% endblock %}
-    {% endblock %}
-    {% block extra_body %}
-    {% endblock %}
-  </body>
+
+        {% block page_header %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block postloadjs %}
+            <script>
+                $('.toast').toast('show');
+            </script>
+        {% endblock %}
+
+        <div class="basket">
+            <a href="{% url 'view_basket' %}">
+                <b>
+                    <img class="m-icon" src="/media/basket.png"/>
+                <br> 
+                {% if grand_total %}
+                    £{{ grand_total|floatformat:2 }}
+                {% else %}
+                    £0.00
+                {% endif %}
+                </b>
+            </a>
+        </div>
+    </body>
 </html>

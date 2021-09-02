@@ -10,8 +10,8 @@ def basket_contents(request):
     for x in range(0, len(basket)):
         total += basket[x]["price"] * int(basket[x]["quantity"])
         product_count += basket[x]["quantity"]
-        shipping = total*round(float(
-                    settings.STANDARD_DELIVERY_PERCENTAGE/100), 2)
+        shipping = round((basket[x]["quantity"]*basket[x]["price"])*(
+            settings.STANDARD_DELIVERY_PERCENTAGE/100), 2)
         basket[x] = {
                 "pk": basket[x]["pk"],
                 "quantity": basket[x]["quantity"],

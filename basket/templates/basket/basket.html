@@ -11,22 +11,20 @@
         <div class="center-text">
             {% if basket_contents %}
                 {% for item in basket_contents %}
-                    {% with basket_contents.item as ind %}
                     <div class="product-container">
                         <a href="/products/{{ item.pk }}">
                             <img src="/media/{{ item.image }}">
                             <p class="name">{{ item.name }}</p>
-                            <p class="price">Price: £ {{ item.price }}</p>
+                            <p class="price">Price: £ {{ item.price|floatformat:2 }}</p>
                             <p class="price">Quantity: {{ item.quantity }}</p>
-                            <p class="price">Shipping Fee: £{{ item.shipping }}</p>
-                            <p class="price">Total Cost: £{{ item.total_cost }}</p>
+                            <p class="price">Shipping Fee: £{{ item.shipping|floatformat:2 }}</p>
+                            <p class="price">Total Cost: £{{ item.total_cost|floatformat:2 }}</p>
                         </a>
                         <form method="POST" action="">
                             {% csrf_token %}
                             <button name="remove" value="{{ item.pk }}" type="submit" class="white-black">Remove</button>
                         </form>
                     </div>
-                    {% endwith %}
                 {% endfor %}
             {% else %}
                 <p>Sorry you have no items within your basket, use the link below to look for an item on the site to buy.</p>
@@ -44,6 +42,8 @@
                 {% endif %}
             </div>
         </div>
+        <br>
         <hr>
+        <br>
     </div>
 {% endblock %}
