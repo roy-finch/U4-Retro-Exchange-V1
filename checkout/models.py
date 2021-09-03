@@ -1,7 +1,9 @@
 import uuid
 
 from django.db import models
+from django.db.models import Sum
 from products.models import Product
+from django.conf import settings
 
 
 class Order(models.Model):
@@ -26,6 +28,12 @@ class Order(models.Model):
     def _gen_order_number(self):
         return uuid.uuid4().hex.upper()
 
+    def update_total(self):
+        self.order_total = self.indiv_items.aggregate(
+            Sum("indiv_item_total"))["lineitem_total__sum"]
+        self.delivery_cost = (
+            self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+
     def save(self, *args, **kwargs):
         if not self.order_number:
             self.order_number = self._gen_order_number()
@@ -35,7 +43,7 @@ class Order(models.Model):
         return self.order_number
 
 
-class OrderItem(models.Model):
+class Order_Items(models.Model):
     order = models.ForeignKey(
         Order, null=False, blank=(
             False), on_delete=models.CASCADE, related_name="indiv_items")
@@ -43,11 +51,12 @@ class OrderItem(models.Model):
         Product, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     indiv_item_total = models.DecimalField(
-        max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+        max_digits=(
+            6), decimal_places=2, null=False, blank=False, editable=False)
+
+    def __str__(self):
+        return f'PK {self.product.pk} on order {self.order.order_number}'
 
     def save(self, *args, **kwargs):
         self.indiv_item_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'SKU {self.product.pk} on order {self.order.order_number}'
