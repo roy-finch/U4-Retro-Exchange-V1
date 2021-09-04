@@ -68,6 +68,9 @@
                     color: black;
                     text-decoration: none;
                 }
+                fieldset input {
+                    margin: 20px;
+                }
                 .center-text input {
                     padding: 10px;
                     border-radius: 20px;
@@ -84,10 +87,19 @@
                     width: 95%;
                     margin: 20px 0px 20px 0px;
                 }
+                .center-text fieldset {
+                    border: 1px solid grey;
+                    border-left: none;
+                    border-right: none;
+                    margin-bottom: 10px;
+                }
                 .s-icon {
                     margin: auto;
                     height: 1.25rem;
                     width: 1.25rem;
+                }
+                .top-0 {
+                    vertical-align: top;
                 }
                 .m-icon {
                     margin: auto;
@@ -411,6 +423,17 @@
                     overflow-x: hidden;
                     overflow-y: auto;
                     height: 220px;
+                }
+                .tall-scroll-container {
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    height: 430px;
+                }
+                .checkout {
+                    padding: 20px;
+                    border: 1px solid grey;
+                    border-radius: 20px;
+                    margin: 20px 40px 20px 40px;
                 }
             </style>
         {% endblock %}
