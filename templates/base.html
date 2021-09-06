@@ -484,7 +484,7 @@
                         {% if request.user.is_superuser %}
                             <a class="no-default m-t-5" href="#">Edit Products</a>
                         {% endif %}
-                        <a class="no-default m-t-5" href="#">My Account</a>
+                        <a class="no-default m-t-5" href="/profile">My Account</a>
                         <a class="no-default" href="{% url 'account_logout' %}">Signout</a>
                     {% else %}
                         <a class="no-default m-t-5" href="{% url 'account_signup' %}">Signup</a>
