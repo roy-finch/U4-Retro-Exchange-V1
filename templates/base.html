@@ -79,6 +79,18 @@
                     margin-left: 30px;
                     width: 50vw;
                 }
+                .center-text select {
+                    padding: 10px;
+                    border-radius: 20px;
+                    outline: none;
+                    border: 1px solid grey;
+                    margin: 25px 0px 25px 5px;
+                    width: 51.2vw;
+                }
+                .center-text select:invalid, 
+                select option[value=""] {
+                    color: grey;
+                }
                 .center-text button {
                     border-radius: 20px;
                     font-size: 20px;
@@ -88,9 +100,8 @@
                     margin: 20px 0px 20px 0px;
                 }
                 .center-text fieldset {
-                    border: 1px solid grey;
-                    border-left: none;
-                    border-right: none;
+                    border: none;
+                    border-top: 1px solid grey;
                     margin-bottom: 10px;
                 }
                 .s-icon {
