@@ -88,7 +88,7 @@
                     width: 51.2vw;
                 }
                 .center-text select:invalid, 
-                select option[value=""] {
+                select option:first-child {
                     color: grey;
                 }
                 .center-text button {
@@ -440,7 +440,7 @@
                     overflow-y: auto;
                     height: 430px;
                 }
-                .checkout {
+                .div-circle-con {
                     padding: 20px;
                     border: 1px solid grey;
                     border-radius: 20px;
@@ -484,7 +484,7 @@
                         {% if request.user.is_superuser %}
                             <a class="no-default m-t-5" href="#">Edit Products</a>
                         {% endif %}
-                        <a class="no-default m-t-5" href="/profile">My Account</a>
+                        <a class="no-default m-t-5" href="{% url 'profile' %}">My Account</a>
                         <a class="no-default" href="{% url 'account_logout' %}">Signout</a>
                     {% else %}
                         <a class="no-default m-t-5" href="{% url 'account_signup' %}">Signup</a>

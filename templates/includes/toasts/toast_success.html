@@ -1,7 +1,7 @@
 <div class="message-container">
     <p class="logo success-color">Success</p>
     <p>{{ message }}</p>
-    {% if basket_contents|length > 0 %}
+    {% if basket_contents|length > 0 and not check_profile %}
         <hr>
         <p class="center-text">Your Basket</p>
         <div class="scroll-container">
