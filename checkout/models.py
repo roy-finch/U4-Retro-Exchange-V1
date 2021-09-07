@@ -37,7 +37,7 @@ class Order(models.Model):
 
     def update_total(self):
         self.order_total = self.indiv_items.aggregate(
-            Sum("indiv_item_total"))["lineitem_total__sum"]
+            Sum("indiv_item_total"))["indiv_item_total__sum"]
         self.delivery_cost = (
             self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100)
 

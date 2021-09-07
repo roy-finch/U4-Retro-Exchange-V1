@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import UserProfile
 from .forms import ProfileForm
 
+
 def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 

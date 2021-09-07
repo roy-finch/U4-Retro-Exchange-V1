@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+    <div class="main-content">
+        <div class="sub-content center-text">
+            <h2 class="logo"><b>THANK YOU</b></h2>
+            <p>Thank you for shopping with Retro Exchange.</p>
+            <p class="retro">Your order number is <b>{{ order.order_number }}</b></p>
+            <hr>
+            <a href="{% url 'home' %}">
+                <button class="black-white themed-button">Return to Homepage</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

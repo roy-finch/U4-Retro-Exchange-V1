@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta %}
+    <meta id="id_stripe_public_key" content="{{ stripe_public_key }}">
+    <meta id="id_client_key" content="{{ client_key }}">
+{% endblock %}
+
 {% block content%}
     <div class="main-content">
         <div class="sub-content">
@@ -35,7 +40,7 @@
         </div>
         <div class="div-circle-con">
             <div class="center-text">
-                <form class="center-text" action="{url 'checkout'}" method="POST" id="payment-form">
+                <form class="center-text" action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
                     <fieldset>
                         <legend>Your Details</legend>
@@ -54,20 +59,19 @@
                     </fieldset>
                     <fieldset>
                         <legend>Payments</legend>
-                        <div id="card-element"></div>
-                        <div id="card-errors" role="alert"></div>
+                        <p>Please insert your card details for the transaction of £{{ grand_total|floatformat:2 }}</p>
+                        <div id="card-element">
+
+                        </div>
+                        <div id="card-errors" role="alert">
+
+                        </div>
+                        <input type="hidden" value="{{ client_key }}" name="client_key">
                     </fieldset>
                     <div class="center-text">
-                        <div class="side-content">
-                            <a href="{% url 'view_basket' %}">
-                                <button type="none" class="white-black themed-button">Adjust your Basket</button>
-                            </a>
-                        </div>
-                        <div class="side-content">
-                            {% if basket_contents %}
-                                <button type="submit" class="black-white themed-button">Finalise Payment of £{{ grand_total | floatformat:2 }}</button>
-                            {% endif %}
-                        </div>
+                        {% if basket_contents %}
+                            <button id="submit" type="submit" class="black-white themed-button">Finalise Payment of £{{ grand_total | floatformat:2 }}</button>
+                        {% endif %}
                     </div>
                 </form>
             </div>
@@ -80,7 +84,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_key|json_script:"id_client_key" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
