@@ -31,11 +31,16 @@
             {% if orders %}
                 <p class="center-text">Hover over an order to get more details</p>
                 {% for order in orders %}
-                    <div class="dropdown div-circle-con">
-                        {{ order.order_number }}        {{ order.date }}
+                    <div class="dropdown div-circle-con center-text">
+                        <span>{{ order.date }}</span>
+                        <span>{{ order.order_number }}</span>
                         <div class="dropdown-container">
                             {% for item in order.indiv_items.all %}
-                                {{ item.quantity }} X {{ item.product.name }}
+                                <div class="product-container">
+                                    <img class="s-icon" src="/media/{{ item.product.image }}">
+                                    <p>{{ item.product.name }}</p>
+                                    <p>{{ item.quantity }} X £{{ item.product.price }} + 10% Shipping</p>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>

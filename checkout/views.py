@@ -56,8 +56,11 @@ def checkout(request):
                         "please contact us for more information."))
                     order.delete()
                     return redirect(reverse("view_bag"))
+
             request.session["save_order"] = "save-order" in request.POST
-            return redirect(reverse("checkout_success", args=[order.order_number]))
+            return redirect(reverse(
+                "checkout_success", args=[order.order_number]))
+
         else:
             messages.error(request, ("Error, problem with form"))
     else:
@@ -72,6 +75,25 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY
         )
+
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    "full_name": profile.user.get_full_name(),
+                    "email": profile.user.email,
+                    "phone_number": profile.default_phone_number,
+                    "country": profile.default_country,
+                    "county": profile.default_county,
+                    "town_r_city": profile.default_town_r_city,
+                    "street_add_line1": profile.default_street_add_line1,
+                    "street_add_line2": profile.default_street_add_line2,
+                    "postcode": profile.default_postcode,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
     if not stripe_public_key or not stripe_secret_key:
         messages.warning(request, "Stripe key is not set.")
