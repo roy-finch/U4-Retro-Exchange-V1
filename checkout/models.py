@@ -31,6 +31,8 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False,
+                                  default="")
 
     def _gen_order_number(self):
         return uuid.uuid4().hex.upper()
@@ -40,6 +42,8 @@ class Order(models.Model):
             Sum("indiv_item_total"))["indiv_item_total__sum"] or 0
         self.delivery_cost = (
             self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        self.grand_total = self.order_total + self.delivery_cost
+        self.save()
 
     def save(self, *args, **kwargs):
         if not self.order_number:
