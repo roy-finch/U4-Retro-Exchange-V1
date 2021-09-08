@@ -16,7 +16,6 @@ import json
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
     basket = request.session.get("basket", [])
 
     if request.method == "POST":
@@ -139,6 +138,5 @@ def checkout_success(request, order_number):
     context = {
         "order": order
     }
-    print(order)
 
     return render(request, template, context)
