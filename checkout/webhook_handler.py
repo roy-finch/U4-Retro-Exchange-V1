@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 
-from .models import Order, Order_Item
+from .models import Order, Order_Items
 from products.models import Product
 from profiles.models import UserProfile
 
@@ -113,7 +113,7 @@ class Stripe_WH_Handler:
                 for item_id, item_data in json.loads(basket).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
-                        order_item = Order_Item(
+                        order_item = Order_Items(
                             order=order,
                             product=product,
                             quantity=item_data,
