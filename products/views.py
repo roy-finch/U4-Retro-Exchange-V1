@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product
 from basket.views import alter_product
+from .forms import ProductForm
 # Create your views here.
 consoles = ["No Specific Console", "Nintendo 64", "NES", "SNES"]
 categories = ["All", "Consoles", "Games", "Accessories", "Bundles"]
@@ -112,3 +113,12 @@ def check_request(request, product_pk, basket):
             alter_product(request, True, product_pk)
         elif "remove" in request.POST:
             alter_product(request, False, product_pk)
+
+def add_product(request):
+    form = ProductForm()
+    template = "products/add_product.html"
+    context = {
+        "form": form,
+    }
+
+    return render(request, template, context)
