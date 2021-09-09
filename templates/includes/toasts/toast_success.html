@@ -9,7 +9,9 @@
                 {% for item in basket_contents %}
                     <div>
                         <div class="center-text">
-                            <img class="m-icon" src="/media/{{ item.image }}">
+                            {% if item.product.image %}
+                                <img class="m-icon" src="/media/{{ item.image }}">
+                            {% endif %}
                         </div>
                         <div class="center-text">
                             <p>{{ item.name }}</p>

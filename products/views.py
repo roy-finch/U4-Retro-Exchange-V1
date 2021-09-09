@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.contrib import messages
 from .models import Product
 from basket.views import alter_product
 from .forms import ProductForm
@@ -114,11 +115,60 @@ def check_request(request, product_pk, basket):
         elif "remove" in request.POST:
             alter_product(request, False, product_pk)
 
+
 def add_product(request):
-    form = ProductForm()
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Successfully added the product")
+            return redirect(reverse("add_product"))
+        else:
+            messages.error(request, "Issue with the form, the information is not valid.")
+    else:
+        form = ProductForm()
     template = "products/add_product.html"
     context = {
         "form": form,
+    }
+
+    return render(request, template, context)
+
+
+def find_product(request):
+    if "select" in request.GET:
+        select = request.GET["select"]
+        product = get_object_or_404(Product, name=select)
+        return redirect(reverse("edit_product"))
+
+    list_products = Product.objects.all()
+
+    template = "products/edit_product.html"
+
+    context = {
+        "products": list_products
+    }
+
+    return render(request, template, context)
+
+
+def edit_product(request):
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Successfully updated the product")
+            return redirect(reverse("find_product"))
+        else:
+            messages.error(request, "Issue with the form, the information is not valid.")
+
+    product = get_object_or_404(Product, pk=get_object_or_404(
+        Product, name=request.POST["select"]).pk)
+    form = ProductForm(request.POST, request.FILES, instance=product)
+
+    template = "products/edit_product.html"
+    context = {
+        "form": form
     }
 
     return render(request, template, context)

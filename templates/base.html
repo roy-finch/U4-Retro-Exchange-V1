@@ -68,6 +68,10 @@
                     color: black;
                     text-decoration: none;
                 }
+                li {
+                    color: red;
+                    list-style: none;
+                }
                 input[type="file"] {
                     text-align: center;
                 }
@@ -75,7 +79,7 @@
                     margin: 20px;
                 }
                 .center-text input {
-                    padding: 10px;
+                    padding: 12px;
                     border-radius: 20px;
                     outline: none;
                     border: 1px solid grey;
@@ -84,7 +88,7 @@
                     margin: 5px auto 35px auto;
                 }
                 .center-text select {
-                    padding: 10px;
+                    padding: 12px;
                     border-radius: 20px;
                     outline: none;
                     border: 1px solid grey;
@@ -93,6 +97,7 @@
                     display: block;
                 }
                 .center-text textarea {
+                    padding: 20px;
                     display: block;
                     margin: 5px auto 35px auto;
                     width: 51.2vw;
@@ -176,6 +181,7 @@
                     width: 100%;
                     z-index: 1;
                     background-color: white;
+                    border-bottom: 1px solid grey;
                     height: 50px;
                 }
                 .nav-bar {
@@ -183,7 +189,7 @@
                     top: 0px;
                     left: 0px;
                     width: 100%;
-                    margin-top: 45px;
+                    margin-top: 48px;
                     height: 80px;
                 }
                 .top-bar > span, .search-con, .basket{
@@ -505,7 +511,8 @@
                 <div class="dropdown-container sub-account">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
-                            <a class="no-default m-t-5" href="{% url 'add_product' %}">Edit Products</a>
+                            <a class="no-default m-t-5" href="{% url 'add_product' %}">Add Products</a>
+                            <a class="no-default m-t-5" href="{% url 'find_product' %}">Find Products</a>
                         {% endif %}
                         <a class="no-default m-t-5" href="{% url 'profile' %}">My Account</a>
                         <a class="no-default" href="{% url 'account_logout' %}">Signout</a>
