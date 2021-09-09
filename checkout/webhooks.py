@@ -6,7 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 from checkout.webhook_handler import Stripe_WH_Handler
 
 import stripe
-import json
 
 
 @require_POST

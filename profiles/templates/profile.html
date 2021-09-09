@@ -39,9 +39,12 @@
                                 <div class="product-container">
                                     <img class="s-icon" src="/media/{{ item.product.image }}">
                                     <p>{{ item.product.name }}</p>
-                                    <p>{{ item.quantity }} X £{{ item.product.price }} + 10% Shipping</p>
+                                    <p>{{ item.quantity }} X £{{ item.product.price }}</p>
                                 </div>
                             {% endfor %}
+                            <p class="center-text">Total: £{{ order.order_total }}</p>
+                            <p class="center-text">Shipping: £{{ order.delivery_cost }}</p>
+                            <p class="center-text">Grand Total: £{{ order.grand_total }}</p>
                         </div>
                     </div>
                 {% endfor %}
