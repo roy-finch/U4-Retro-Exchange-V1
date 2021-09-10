@@ -46,8 +46,8 @@ form.addEventListener("submit", function(ev) {
         "disabled": true
     });
     document.getElementById("submit").setAttribute("disabled", true);
-    var saveOrder = Boolean(document.getElementById("save-order").getAttribute("checked", true));
-    var csrfToken = document.getElementsByTagName("input[name='csrfmiddlewaretoken']").value;
+    var saveOrder = Boolean($("#id-save-order").attr("checked"));
+    var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
     var postData = {
         "csrfmiddlewaretoken": csrfToken,
         "client_key": clientKey,
