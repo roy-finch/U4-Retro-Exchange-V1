@@ -10,23 +10,14 @@
         </div>
             <div class="div-circle-con">
                 <div class="center-text">
-                    <form class="center-text" action="{% url 'edit_product' %}" method="POST" enctype="multipart/form-data">
+                    <form class="center-text" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% if form %}
-                            <p class="center-text">Add details below about the new product you'd like tod add.</p>
-                            {% csrf_token %}
-                            {{ form }}
-                            <button id="submit" type="submit" class="black-white themed-button">Update Product</button>
-                        {% else %}
-                            <p class="center-text">Select a product you would like to edit</p>
-                            <input placeholder="What product would you like to edit?" class="no-default center-text" name="select" list="products"/>
-                            <datalist id="products">
-                                {% for item in products %}
-                                    <option value="{{ item.name }}">
-                                {% endfor %}
-                            </datalist>
-                            <button id="submit" type="submit" class="white-black themed-button">Find Product</button>
-                        {% endif %}
+                        <p class="center-text">Add details below about the new product you'd like tod add.</p>
+                        {{ form }}
+                        <hr>
+                        <label for="delete">Delete Product:<br><span class="error-color">To delete this product, please say "DELETE" in the input field below</span></label>
+                        <input class="error-color center-text" type="input" id="delete" name="delete"></input>
+                        <button id="submit" type="submit" class="black-white themed-button">Update Product</button>
                     </form>
                 </div>
             </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Product
 from basket.views import alter_product
 from .forms import ProductForm
@@ -116,14 +117,15 @@ def check_request(request, product_pk, basket):
             alter_product(request, False, product_pk)
 
 
+@login_required
 def add_product(request):
-
+    check_super(request)
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "Successfully added the product")
-            return redirect(reverse("add_product"))
+            return redirect(reverse("find_product"))
         else:
             messages.error(request, "Issue with the form, the information is not valid.")
     else:
@@ -136,15 +138,19 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def find_product(request):
-    if "select" in request.GET:
-        select = request.GET["select"]
-        product = get_object_or_404(Product, name=select)
-        return redirect(reverse("edit_product"))
-
+    check_super(request)
     list_products = Product.objects.all()
 
-    template = "products/edit_product.html"
+    if "select" in request.GET:
+        if request.GET["select"] == "New Product":
+            return redirect(reverse("add_product"))
+        else:
+            product = get_object_or_404(Product, name=request.GET["select"])
+            return redirect(reverse("edit_product", args=[product.pk]))
+
+    template = "products/find_product.html"
 
     context = {
         "products": list_products
@@ -153,18 +159,25 @@ def find_product(request):
     return render(request, template, context)
 
 
-def edit_product(request):
+@login_required
+def edit_product(request, product_pk):
+    check_super(request)
+    product = get_object_or_404(Product, pk=product_pk)
+    form = ProductForm(instance=product)
+
     if request.method == "POST":
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Successfully updated the product")
+        if "delete" in request.POST and request.POST["delete"] == "DELETE":
+            product.delete()
+            messages.success(request, "Product is deleted")
             return redirect(reverse("find_product"))
         else:
-            messages.error(request, "Issue with the form, the information is not valid.")
-
-    product = get_object_or_404(Product, pk=get_object_or_404(
-        Product, name=request.POST["select"]).pk)
-    form = ProductForm(request.POST, request.FILES, instance=product)
+            form = ProductForm(request.POST, request.FILES, instance=product)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Successfully updated the product")
+                return redirect(reverse("find_product"))
+            else:
+                messages.error(request, "Issue with the form, the information is not valid.")
 
     template = "products/edit_product.html"
     context = {
@@ -172,3 +185,9 @@ def edit_product(request):
     }
 
     return render(request, template, context)
+
+
+def check_super(request):
+    if not request.user.is_superuser:
+        messages.error(request, "Oops, this is for the store owner.")
+        return redirect(reverse("home"))

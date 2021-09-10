@@ -475,6 +475,11 @@
                 .right-text {
                     float: right;
                 }
+                .a-list {
+                    padding: 10px;
+                    border-bottom: 1px solid grey;
+                    display: block;
+                }
             </style>
         {% endblock %}
 
@@ -511,8 +516,7 @@
                 <div class="dropdown-container sub-account">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
-                            <a class="no-default m-t-5" href="{% url 'add_product' %}">Add Products</a>
-                            <a class="no-default m-t-5" href="{% url 'find_product' %}">Find Products</a>
+                            <a class="no-default m-t-5" href="{% url 'find_product' %}">Products</a>
                         {% endif %}
                         <a class="no-default m-t-5" href="{% url 'profile' %}">My Account</a>
                         <a class="no-default" href="{% url 'account_logout' %}">Signout</a>
