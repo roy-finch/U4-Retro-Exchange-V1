@@ -10,6 +10,12 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """
+    These are the order models, which
+    is used to make sure that an order
+    has the specific information that
+    is required.
+    """
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, null=True, blank=True,
                                      on_delete=models.CASCADE,
@@ -55,6 +61,10 @@ class Order(models.Model):
 
 
 class Order_Items(models.Model):
+    """
+    This is to call upon a specific item which
+    is in the parent Model class Order.
+    """
     order = models.ForeignKey(
         Order, null=False, blank=(
             False), on_delete=models.CASCADE, related_name="indiv_items")

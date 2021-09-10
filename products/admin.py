@@ -5,6 +5,10 @@ from .models import Product, Category, Console
 
 
 class ProductAdmin():
+    """
+    Alters the way data is
+    displayed in admin
+    """
     list_display = {
         "sku",
         "name",
@@ -17,6 +21,10 @@ class ProductAdmin():
 
 
 class CategoryAdmin():
+    """
+    Alters the way data is
+    displayed in admin
+    """
     list_display = {
         "name",
         "display_name",
@@ -24,12 +32,19 @@ class CategoryAdmin():
 
 
 class ConsoleAdmin():
+    """
+    Alters the way data is
+    displayed in admin
+    """
     list_display = {
         "name",
         "display_name",
     }
 
 
+"""
+Registers the alterations
+"""
 admin.site.register(Product)
 admin.site.register(Category)
 admin.site.register(Console)

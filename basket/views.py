@@ -18,7 +18,10 @@ def view_basket(request):
 
 
 def alter_product(request, add, product_pk):
-
+    """
+    Function to alter a product amount in
+    the basket, add or remove ect.
+    """
     basket = request.session.get("basket", [])
     product = get_object_or_404(Product, pk=product_pk)
 
@@ -49,6 +52,16 @@ def alter_product(request, add, product_pk):
 
 
 def find_product(dic, pk):
+    """
+    Quick function to find products within the basket
+    as I have altered the way on which the basket
+    is accessed the basket is actual a list, dictionary
+    combi, whilst it would be better to use a dictionary
+    I used this combi to help with production as this works
+    equally as well as it would if the basket was just a
+    dictionary
+    """
+
     for i in range(0, len(dic)):
         if dic[i]["pk"] == pk:
             return i

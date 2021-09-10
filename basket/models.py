@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Basket(models.Model):
+    """
+    This is the model for the basket
+    """
+
     name = models.CharField(max_length=254)
     sku = models.CharField(max_length=254, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)

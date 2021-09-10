@@ -14,8 +14,13 @@ from products.models import Product
 import stripe
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
+    """
+    This function will cache any data about the checkout
+    so that it can be accessed from other entries
+    """
     try:
         pid = request.POST.get("client_key").split("_secret")[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -33,6 +38,10 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    This sets up the form for checking out
+    and also sets up the stripe payment and view
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     basket = request.session.get("basket", [])
@@ -128,7 +137,12 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-
+    """
+    Function for when a payment is successful
+    it will take the user to a page dedicated to
+    the order number and info the user would need
+    afterwards
+    """
     save_order = request.session.get('save_order')
     order = get_object_or_404(Order, order_number=order_number)
 

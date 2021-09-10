@@ -1,14 +1,18 @@
 {% if widget.is_initial %}
-    <p>{{ widget.initial_text }}</p>
-    <a href="{{ widget.value.url }}">
-        <img width="86" height="96" src="{{ widget.value.url }}">
-    </a>
-    {% if not widget.required %}
-        <br>
-        <label for="{{ widget.checkout_id }}">{{ widget.clear_checkbox_label }}:</label>
-        <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkout_id }}"></input>
-    {% endif %}
+    <br>
+    <div class="center-text product-container">
+        <a href="{{ widget.value.url }}">
+            <p>{{ widget.initial_text }}</p>
+            <hr>
+            <img width="86" height="96" src="{{ widget.value.url }}">
+        </a>
+        {% if not widget.required %}
+            <br>
+            <label for="{{ widget.checkout_id }}">{{ widget.clear_checkbox_label }}:</label>
+            <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkout_id }}"></input>
+        {% endif %}
+    </div>
     {{ widget.input_text }}
 {% endif %}
-Select Image: <input class="white-black div-circle-con" type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
-<p class="error-color" id="filename"></p>
+<br>
+Select Image: <input class="image-file" type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>

@@ -2,6 +2,10 @@ from django.conf import settings
 
 
 def basket_contents(request):
+    """
+    Deals with the basket and alters the
+    corrisponding values for other apps.
+    """
 
     total = 0
     product_count = 0

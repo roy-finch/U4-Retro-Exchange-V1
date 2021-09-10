@@ -3,6 +3,13 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
+    """
+    This is the form layout of an order
+    this is to render a form in the html
+    with specific fields that are required
+    for the order
+    Also contains meta to make it presented better
+    """
     class Meta:
         model = Order
         fields = ("full_name", "email", "phone_number", "street_add_line1",

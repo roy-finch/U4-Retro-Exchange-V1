@@ -110,6 +110,13 @@ def product_detail(request, product_pk):
 
 
 def check_request(request, product_pk, basket):
+    """
+    Checks whether a request is to add
+    or remove an item from the basket
+    this is done as the basket is a list, dict
+    and needs to be accessed using the function inside
+    the views.py basket/
+    """
     if request.POST:
         if "add" in request.POST:
             alter_product(request, True, product_pk)
@@ -119,6 +126,9 @@ def check_request(request, product_pk, basket):
 
 @login_required
 def add_product(request):
+    """
+    This is to add an item to the product list as admin
+    """
     check_super(request)
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
@@ -127,12 +137,14 @@ def add_product(request):
             messages.success(request, "Successfully added the product")
             return redirect(reverse("find_product"))
         else:
-            messages.error(request, "Issue with the form, the information is not valid.")
+            messages.error(
+                request, "Issue with the form, the information is not valid.")
     else:
         form = ProductForm()
     template = "products/add_product.html"
     context = {
         "form": form,
+        "check_display": False
     }
 
     return render(request, template, context)
@@ -140,6 +152,9 @@ def add_product(request):
 
 @login_required
 def find_product(request):
+    """
+    This is to find and alter a product
+    """
     check_super(request)
     list_products = Product.objects.all()
 
@@ -153,7 +168,8 @@ def find_product(request):
     template = "products/find_product.html"
 
     context = {
-        "products": list_products
+        "products": list_products,
+        "check_display": False
     }
 
     return render(request, template, context)
@@ -161,6 +177,10 @@ def find_product(request):
 
 @login_required
 def edit_product(request, product_pk):
+    """
+    Edit a product once found using the find
+    function
+    """
     check_super(request)
     product = get_object_or_404(Product, pk=product_pk)
     form = ProductForm(instance=product)
@@ -177,17 +197,25 @@ def edit_product(request, product_pk):
                 messages.success(request, "Successfully updated the product")
                 return redirect(reverse("find_product"))
             else:
-                messages.error(request, "Issue with the form, the information is not valid.")
+                messages.error(
+                    request,
+                    "Issue with the form, the information is not valid.")
 
     template = "products/edit_product.html"
     context = {
-        "form": form
+        "form": form,
+        "check_display": False
     }
 
     return render(request, template, context)
 
 
 def check_super(request):
+    """
+    Function to check if a user
+    has the correct access level
+    on the site
+    """
     if not request.user.is_superuser:
         messages.error(request, "Oops, this is for the store owner.")
         return redirect(reverse("home"))

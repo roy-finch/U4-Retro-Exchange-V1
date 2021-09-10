@@ -11,6 +11,11 @@ import stripe
 @require_POST
 @csrf_exempt
 def webhook(request):
+    """
+    This deals with webhoosk sent from stripe and
+    uses the handler to create functionailty from
+    the webhook responses
+    """
     wh_secret = settings.STRIPE_WH_SECRET
     payload = request.body
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
@@ -20,9 +25,9 @@ def webhook(request):
         event = stripe.Webhook.construct_event(
             payload, sig_header, wh_secret
         )
-    except ValueError as e:
+    except ValueError:
         return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
+    except stripe.error.SignatureVerificationError:
         return HttpResponse(status=400)
     except Exception as e:
         return HttpResponse(content=e, status=400)
@@ -39,13 +44,3 @@ def webhook(request):
 
     response = event_handler(event)
     return response
-    # if event.type == "payment_intent.succeeded":
-    #     payment_intent = event.data.object
-    #     print("PaymentIntent successful")
-    # elif event.type == "payment_method.attached":
-    #     payment_method = event.data.object
-    #     print("PaymentMethod attached to customer!")
-    # else:
-    #     return HttpResponse(status=400)
-
-    return HttpResponse(status=200)

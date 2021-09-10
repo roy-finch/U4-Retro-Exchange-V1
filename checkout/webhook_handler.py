@@ -45,7 +45,7 @@ class Stripe_WH_Handler:
 
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping_details
-        grand_total = round(intent.charges.data[0].amount /100, 2)
+        grand_total = round(intent.charges.data[0].amount/100, 2)
 
         for field, value in shipping_details.address.items():
             if value == "":
@@ -60,8 +60,10 @@ class Stripe_WH_Handler:
                 profile.default_country = shipping_details.address.country
                 profile.default_county = shipping_details.address.state
                 profile.default_town_r_city = shipping_details.address.city
-                profile.default_street_add_line1 = shipping_details.address.line1
-                profile.default_street_add_line2 = shipping_details.address.line2
+                profile.default_street_add_line1 = (
+                    shipping_details.address.line1)
+                profile.default_street_add_line2 = (
+                    shipping_details.address.line2)
                 profile.default_postcode = shipping_details.address.postal_code
                 profile.save()
 
@@ -119,10 +121,11 @@ class Stripe_WH_Handler:
                             quantity=item_data,
                         )
                         order_item.save()
-            except Exception as e:
+            except Exception:
                 if order:
                     order.delete()
-                return HttpResponse(content=f"Webhook recieved: {event['type']}",
+                return HttpResponse(content=(
+                    f"Webhook recieved: {event['type']}"),
                                     status=500)
         self._send_confirmation_email(order)
         return HttpResponse(content=f"Webhook recieved: {event['type']}",

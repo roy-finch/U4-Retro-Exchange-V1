@@ -2,6 +2,9 @@
     This is to create and enable the stripe smart checkout.
     Used https://stripe.com/docs/payments/accept-a-payment
     to create functionality of the payment methods.
+
+    This file sets up the payments and transactions of my site
+    it uses stripe features to create and take payments.
 */
 
 var stripePublicKey = document.getElementById("id_stripe_public_key").getAttribute("content");
