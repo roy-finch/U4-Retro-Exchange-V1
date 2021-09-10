@@ -6,9 +6,8 @@
     This file sets up the payments and transactions of my site
     it uses stripe features to create and take payments.
 */
-
-var stripePublicKey = document.getElementById("id_stripe_public_key").getAttribute("content");
-var clientKey = document.getElementById("id_client_key").getAttribute("content");
+var stripePublicKey = document.getElementById("id_stripe_public_key").getAttribute("content").slice(1, -1);
+var clientKey = document.getElementById("id_client_key").getAttribute("content").slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 
@@ -39,7 +38,7 @@ card.addEventListener("change", function(event) {
     }
 });
 
-var form = document.querySelector("payment-form");
+var form = document.getElementById("payment-form");
 
 form.addEventListener("submit", function(ev) {
     ev.preventDefault();
@@ -47,8 +46,8 @@ form.addEventListener("submit", function(ev) {
         "disabled": true
     });
     document.getElementById("submit").setAttribute("disabled", true);
-    var saveOrder = Boolean(document.getElementById('save-order').setAttribute('checked', true));
-    var csrfToken = document.getElementById("input:[name='csrfmiddlewaretoken']").val();
+    var saveOrder = Boolean(document.getElementById("save-order").getAttribute("checked", true));
+    var csrfToken = document.getElementsByTagName("input[name='csrfmiddlewaretoken']").value;
     var postData = {
         "csrfmiddlewaretoken": csrfToken,
         "client_key": clientKey,
