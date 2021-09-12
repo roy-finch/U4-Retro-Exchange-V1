@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-nupr#e9q-4g4@(bq9%q2va@10oxx)ab&yedu&e(cysd+vbnght
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['retro-exchange.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -114,12 +114,17 @@ WSGI_APPLICATION = 'retro_exchange.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    DATATBASES = {
+        'default': dj.database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
