@@ -15,6 +15,19 @@ import stripe
 import json
 
 
+def simp_basket(basket):
+    temp_list = []
+    for i in range(0, len(basket)):
+        temp_list.append({
+            "pk": basket[i]["pk"],
+            "quantity": basket[i]["quantity"],
+            "name": basket[i]["product"]["name"],
+            "price": basket[i]["product"]["price"]
+            })
+    print(temp_list)
+    return temp_list
+
+
 @require_POST
 def cache_checkout_data(request):
     """
@@ -22,10 +35,10 @@ def cache_checkout_data(request):
     so that it can be accessed from other entries
     """
     try:
-        pid = request.POST.get("client_key").split("_secret")[0]
+        pid = request.POST.get("client_secret").split("_secret")[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            "basket": json.dumps(request.session.get('basket', [])),
+            "basket": json.dumps(simp_basket(request.session["basket"])),
             "save_order": request.POST.get("save_order"),
             "username": request.user,
         })

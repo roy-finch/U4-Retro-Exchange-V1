@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block meta %}
-    <meta id="id_stripe_public_key" content="{{ stripe_public_key }}">
-    <meta id="id_client_key" content="{{ client_key }}">
-{% endblock %}
-
 {% block content%}
     <div class="main-content">
         <div class="sub-content">
@@ -20,9 +15,9 @@
                 {% if basket_contents %}
                     {% for item in basket_contents %}
                         <div class="product-container">
-                            <img src="/media/{{ item.image }}">
-                                <p class="name">{{ item.name }}</p>
-                                <p class="price">Price: £ {{ item.price|floatformat:2 }}</p>
+                            <img src="/media/{{ item.product.image }}">
+                                <p class="name">{{ item.product.name }}</p>
+                                <p class="price">Price: £ {{ item.product.price|floatformat:2 }}</p>
                                 <p class="price">Quantity: {{ item.quantity }}</p>
                                 <p class="price">Shipping Fee: £{{ item.shipping|floatformat:2 }}</p>
                                 <p class="price">Total Cost: £{{ item.total_cost|floatformat:2 }}</p>
@@ -86,5 +81,7 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_key|json_script:"id_client_key" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

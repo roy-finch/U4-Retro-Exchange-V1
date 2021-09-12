@@ -99,20 +99,22 @@ class Stripe_WH_Handler:
             order = None
             try:
                 order = Order.objects.get(
-                    full_name__iexact=shipping_details.full_name,
-                    email__iexact=billing_details.email,
-                    phone_number__iexact=shipping_details.phone,
-                    country__iexact=shipping_details.address.country,
-                    county__iexact=shipping_details.address.state,
-                    town_r_city__iexact=shipping_details.address.city,
-                    street_add_line1__iexact=shipping_details.address.line1,
-                    street_add_line2__iexact=shipping_details.address.line2,
-                    postcode__iexact=shipping_details.address.postal_code,
-                    grand_total=grand_total,
+                    full_name=shipping_details.name,
+                    user_profile=profile,
+                    email=billing_details.email,
+                    phone_number=shipping_details.phone,
+                    country=shipping_details.address.country,
+                    county=shipping_details.address.state,
+                    town_r_city=shipping_details.address.city,
+                    street_add_line1=shipping_details.address.line1,
+                    street_add_line2=shipping_details.address.line2,
+                    postcode=shipping_details.address.postal_code,
                     original_basket=basket,
                     stripe_pid=pid,
                 )
-                for item_id, item_data in json.loads(basket).items():
+                for i in range(0, len(json.loads(basket))-1):
+                    item_id = basket[i]["pk"]
+                    item_data = basket[i]["quantity"]
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_item = Order_Items(

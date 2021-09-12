@@ -80,7 +80,8 @@ def all_products(request):
         "products": products,
         "search_q": search,
         "return_num": search_num,
-        "basket_contents": basket
+        "basket_contents": basket,
+        "can_display": True
     }
 
     if request.POST:
@@ -103,7 +104,8 @@ def product_detail(request, product_pk):
 
     context = {
         "products": products,
-        "basket_contents": basket
+        "basket_contents": basket,
+        "can_display": True
     }
 
     return render(request, "products/product.html", context)

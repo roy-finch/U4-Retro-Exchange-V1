@@ -6,8 +6,8 @@
     This file sets up the payments and transactions of my site
     it uses stripe features to create and take payments.
 */
-var stripePublicKey = document.getElementById("id_stripe_public_key").getAttribute("content").slice(1, -1);
-var clientKey = document.getElementById("id_client_key").getAttribute("content").slice(1, -1);
+var stripePublicKey = $("#id_stripe_public_key").text().slice(1, -1);
+var clientKey = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 
@@ -50,7 +50,7 @@ form.addEventListener("submit", function(ev) {
     var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
     var postData = {
         "csrfmiddlewaretoken": csrfToken,
-        "client_key": clientKey,
+        "client_secret": clientKey,
         "save_order": saveOrder,
     };
     var url = "/checkout/cache_checkout_data/";
@@ -81,7 +81,7 @@ form.addEventListener("submit", function(ev) {
                         city: $.trim(form.town_r_city.value),
                         line1: $.trim(form.street_add_line1.value),
                         line2: $.trim(form.street_add_line2.value),
-                        post_code: $.trim(form.post_code.value),
+                        postcode: $.trim(form.postcode.value),
                     }
                 }
             }
@@ -92,7 +92,7 @@ form.addEventListener("submit", function(ev) {
                 card.update({
                     "disabled": false
                 });
-                document.getElementById("submit").setAttribute("disabled", false);
+                $('#submit').attr('disabled', false);;
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();

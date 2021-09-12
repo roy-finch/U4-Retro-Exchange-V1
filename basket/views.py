@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from products.models import Product
+from django.forms.models import model_to_dict
 
 
 def view_basket(request):
@@ -33,11 +34,11 @@ def alter_product(request, add, product_pk):
             basket.append({
                 "pk": product_pk,
                 "quantity": 1,
-                "name": product.name,
-                "image": str(product.image),
-                "price": float(product.price),
-                "description": product.description,
+                "product": model_to_dict(product, exclude=["price", "rating", "image"])
             })
+            basket[len(basket)-1]["product"]["price"] = float(product.price)
+            basket[len(basket)-1]["product"]["rating"] = float(product.rating)
+            basket[len(basket)-1]["product"]["image"] = str(product.image)
     else:
         messages.success(request, f'Removed { product.name }')
         if find_product(basket, product_pk) is not False and basket[

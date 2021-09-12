@@ -13,11 +13,11 @@
                 {% for item in basket_contents %}
                     <div class="product-container">
                         <a href="/products/{{ item.pk }}">
-                            {% if item.image %}
-                                <img src="/media/{{ item.image }}">
+                            {% if item.product.image %}
+                                <img src="/media/{{ item.product.image }}">
                             {% endif %}
-                            <p class="name">{{ item.name }}</p>
-                            <p class="price">Price: £ {{ item.price|floatformat:2 }}</p>
+                            <p class="name">{{ item.product.name }}</p>
+                            <p class="price">Price: £ {{ item.product.price|floatformat:2 }}</p>
                             <p class="price">Quantity: {{ item.quantity }}</p>
                             <p class="price">Shipping Fee: £{{ item.shipping|floatformat:2 }}</p>
                             <p class="price">Total Cost: £{{ item.total_cost|floatformat:2 }}</p>
