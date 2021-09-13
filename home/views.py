@@ -5,5 +5,4 @@ from django.shortcuts import render
 
 def index(request):
     """ This returns the index page """
-    request.session["basket"] = []
     return render(request, "home/index.html")
