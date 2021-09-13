@@ -118,6 +118,7 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
+    DATABASES['default']['ENGINE'] = 'django.db.backends.mysql3'
 else:
     DATABASES = {
         'default': {
