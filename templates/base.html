@@ -10,7 +10,7 @@
         {% endblock %}
 
         {% block corecss %}
-            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="/static/css/base.css">
         {% endblock %}
 
         {% block corejs %}
@@ -26,7 +26,7 @@
             <div class="logo-container m-l-20 m-t-5">
                 <a href="{% url 'home' %}">
                     <span class="logo">
-                        <img class="logo-img" src="{% media 'r_e_logo.png' %}"/>
+                        <img class="logo-img" src="/media/r_e_logo.png/"/>
                         <b>RETRO EXCHANGE</b>
                     </span>
                 </a>
@@ -94,7 +94,7 @@
         <div class="basket">
             <a href="{% url 'view_basket' %}">
                 <b>
-                    <img class="m-icon" src="{% media 'basket.png' %}"/>
+                    <img class="m-icon" src="/media/basket.png"/>
                 <br> 
                 {% if grand_total %}
                     £{{ grand_total|floatformat:2 }}
