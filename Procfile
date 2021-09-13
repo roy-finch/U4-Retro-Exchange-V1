@@ -1,1 +1,1 @@
-web: gunicorn retro_exchange.wsgi:application
+web: uwsgi uwsgi.ini
