@@ -3,9 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
-        <link rel="shortcut icon" href="/media/r_e_logo.png">
-
         {% block meta %}
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +26,7 @@
             <div class="logo-container m-l-20 m-t-5">
                 <a href="{% url 'home' %}">
                     <span class="logo">
-                        <img class="logo-img" src="/media/r_e_logo.png"/>
+                        <img class="logo-img" src="{% media 'r_e_logo.png' %}"/>
                         <b>RETRO EXCHANGE</b>
                     </span>
                 </a>
@@ -97,7 +94,7 @@
         <div class="basket">
             <a href="{% url 'view_basket' %}">
                 <b>
-                    <img class="m-icon" src="/media/basket.png"/>
+                    <img class="m-icon" src="{% media 'basket.png' %}"/>
                 <br> 
                 {% if grand_total %}
                     £{{ grand_total|floatformat:2 }}
